@@ -1,79 +1,15 @@
-
-
 @extends('layouts.app')
 
 @section('content')
-<link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet">
 
-        <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-10">
-                    @section('header', 'Dashboard')<br>
-                    </div>
-                    <div class="col-md-2">
-                        <a href="{{ route('index') }}" class="btn btn-md btn-success float-right"><i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </div> 
-            </div>
-            <div class="card-body">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                
-    </div>
-
-
-<div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto" style="max-width: max-content object-position: right">
-    <div class="flex flex-col">
-    <!-- Stats Row Starts Here -->
-    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-        <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-2/4 mx-2">
-            <div class="p-4 flex flex-col ">
-                <a href="{{ route('list.PPF.Verify') }}" class="no-underline text-gray-700 text-2xl">
-                    Verify
-                </a>
-                <a href="{{ route('list.PPF.Verify') }}" class="no-underline text-gray-700 text-lg">
-                    Programme Proposal
-                </a>
-            </div>
-        </div>
-
-        <!-- <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-2/4 mx-2">
-            <div class="p-4 flex flex-col ">
-                <a href="#" class="no-underline text-gray-700 text-2xl">
-                    List
-                </a>
-                <a href="#" class="no-underline text-gray-700 text-lg">
-                    Approval Committee
-                </a>
-            </div>
-        </div> -->
-
-
-       
-
-
-    
-            </div>
-        </div>
-
-        <br>
-        <!-- <h1 class="text-gray-600 text-base leading-normal">List of Proposal with The Verification</h1><br/> -->
+<!-- <h1 class="text-gray-600 text-base leading-normal">List of Proposal with The Verification</h1><br/> -->
 
 <div class="overflow-x-auto">
   <div class="min-w-screen min-h-screen bg-gray-100 flex-auto justify-center bg-gray-100 font-sans overflow-hidden">
 
-    <table class="table-fixed border-collapse border-white leading-relaxed  py-3 px-6 whitespace-nowrap text-gray-600 text-xl mt-4 font-extralight w-full">
+    <table class="table-fixed border-collapse border-white leading-relaxed text-left py-3 px-6 whitespace-nowrap text-gray-600 text-sm font-extralight w-full">
       <tr>
-        
-        <th class=" text-gray-600 text-start">&emsp;&emsp;Pending Approval</th>
+        <th class="bg-green-700 text-white text-center shadow-md rounded-md">PROPOSAL WITH VERIFICATION</th>
       </tr>
       <tr>
         <th>&nbsp;</th>
@@ -127,11 +63,4 @@
   </div>
 </div>
 
-    </div>
-    
-    </div>
-
-    
-
-@endsection 
-
+@endsection

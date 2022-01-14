@@ -3,7 +3,7 @@
 </svg> -->
 
 <a class="h-6 w-6">
-				<img src="https://seeklogo.com/images/I/international-islamic-university-malaysia-logo-221DAA8603-seeklogo.com.png" 
+	<img src="https://www.pinclipart.com/picdir/big/110-1109509_international-islamic-university-malaysia-wikipedia-international-islamic-university.png" 
        alt="Italian Trulli" style="width: 5vw; min-width: 40px;">
 </a>
 

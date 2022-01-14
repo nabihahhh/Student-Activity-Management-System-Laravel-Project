@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\SessionGuard;
 use App\Http\Controllers\Controller;
 use App\Models\Proposal;
 use App\Models\File;
@@ -15,13 +18,13 @@ class ProposalController extends Controller
      *
      * @return response()
      */
-    public function index(Request $request)
+    public function index1(Request $request)
     {
         $request->session()->forget('Proposal');
 
         $products = \App\Models\Proposal::all();
 
-        return view('Proposal.index1',compact('proposals'));
+        return view('proposal.index',compact('products'));
     }
 
     /**
@@ -52,6 +55,7 @@ class ProposalController extends Controller
             'venue' => 'nullable:Proposals,$id',
             'studentDrivenProgramme' => 'in:1,0',
             'departmentDrivenProgramme' => 'in:1,0',
+            'invitationalProgramme'  => 'in:1,0',
             'jointProgramme' => 'in:1,0',
             'creditedProgramme' => 'in:1,0',
             'othersProgramme' => 'nullable:Proposals,$id',
@@ -101,17 +105,16 @@ class ProposalController extends Controller
         $validatedData = $request->validate([
             'collaborations' => 'nullable:Proposals,$id',
             'kullDeptUnitInCharge' => 'nullable:Proposals,$id',
-            'conclusion' => 'nullable:Proposals,$id',
             'societyClubAssociation' => 'nullable:Proposals,$id',
 
-            'participationActivity' => 'nullable:Proposals,$id',
-            'competitionActivity' => 'nullable:Proposals,$id',
+            'participationActivity' => 'in:1,0',
+            'competitionActivity' => 'in:1,0',
 
-            'universityLevel' => 'nullable:Proposals,$id',
-            'nationalLevel' => 'nullable:Proposals,$id',
-            'InternationalLevel' => 'nullable:Proposals,$id',
-            'societyDepartmentLevel' => 'nullable:Proposals,$id',
-            'compulsoryProgrammeLevel' => 'nullable:Proposals,$id',
+            'universityLevel' => 'in:1,0',
+            'nationalLevel' => 'in:1,0',
+            'InternationalLevel' => 'in:1,0',
+            'societyDepartmentLevel' => 'in:1,0',
+            'compulsoryProgrammeLevel' => 'in:1,0',
 
             'localParticipant' => 'nullable:Proposals,$id',
             'InternationalParticipant' => 'nullable:Proposals,$id',
@@ -158,7 +161,7 @@ class ProposalController extends Controller
     public function createStep3(Request $request)
     {  
         $Proposal = $request->session()->get('Proposal');
-        return view('Proposal.step3',compact('Proposal'));
+        return view('proposal.step3',compact('Proposal'));
     }
 
    /**
@@ -213,14 +216,14 @@ class ProposalController extends Controller
                $Proposal->fill($validatedData);
                $request->session()->put('Proposal', $Proposal);
            }
-           return redirect()->route('proposal.create.step.4');
+           return redirect()->route('proposal.create.step.5');
        }
 
        public function createStep5(Request $request)
        {
            $Proposal = $request->session()->get('Proposal');
    
-           return view('proposal.step4',compact('Proposal'));
+           return view('proposal.step5',compact('Proposal'));
        }
    
        /**
@@ -231,22 +234,25 @@ class ProposalController extends Controller
        public function PostcreateStep5(Request $request)
        {
            $validatedData = $request->validate([
-            //    'achievementsObservation' => 'nullable:Reports,$id',
+                'approvalCommitteeName' => 'nullable:Proposals,$id',
             //    'shortcomings' => 'nullable:Reports,$id',
             //    'conclusion' => 'nullable:Reports,$id',
             //    'suggestions' => 'nullable:Reports,$id',
                
            ]);
+
            if(empty($request->session()->get('Proposal'))){
-               $Proposal = new \App\Models\Proposal();
-               $Proposal->fill($validatedData);
-               $request->session()->put('Proposal', $Proposal);
-           }else{
-               $Proposal = $request->session()->get('Proposal');
-               $Proposal->fill($validatedData);
-               $request->session()->put('Proposal', $Proposal);
-           }
-           return redirect()->route('proposal.create.step.5');
+            $Proposal = new \App\Models\Proposal();
+            $Proposal->fill($validatedData);
+            // $Report->sdgGoal1 = $request->has('sdgGoal1');
+            // $Report->sdgGoal1 = $request->has('sdgGoal1');
+            $request->session()->put('Proposal', $Proposal);
+        }else{
+            $Proposal = $request->session()->get('Proposal');
+            $Proposal->fill($validatedData);
+            $request->session()->put('Proposal', $Proposal);
+        }
+        return view('Proposal.step6',compact('Proposal'));
        }
 
 
@@ -275,7 +281,7 @@ class ProposalController extends Controller
      *
      * @return response()
      */
-    public function store(Request $request)
+    public function store1(Request $request)
     {
         $Proposal = $request->session()->get('Proposal');
         // $date= $request->input('date');
@@ -284,6 +290,32 @@ class ProposalController extends Controller
         $Proposal->save();
 
         return redirect('/data1');
+    }
+
+    public function postShowDetails($id)
+    {
+        $proposal = Proposal::find($id);
+        return view('verify.showDetails', compact('proposal','id'));
+    }
+
+// search keyword
+    public function searchKeyboard(Request $request)
+    {
+    
+      $keyword = $request->get('keyword');
+      $user = Auth::user()->name ;
+      
+      
+      $proposal = DB::table('proposals')
+      ->where('programmeName', 'like', '%'.$keyword.'%')
+      ->orWhere('programmeOrganizer', 'like', '%'.$keyword.'%')
+      ->get();
+    //   ->paginate(5);
+    //   $proposal = DB::table('proposals')
+    //   ->where('proposals.approvalCommitteeName', '_approval_committee.approvalCommitteeName')
+    //   ->paginate(5);
+      return view('verify.showProposalTable', ['proposal' => $proposal->where('approvalCommitteeName', 'like', $user)]);
+
     }
     
 }

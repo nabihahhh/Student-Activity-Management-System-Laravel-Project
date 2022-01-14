@@ -13,7 +13,7 @@
             <div class="card-header">
             </div>
             <div class="card-body"> 
-                <h1 class="text-3xl">Your submission for the Programme Report Form has been successful!</h1>
+                <h1 class="text-3xl">Your submission for the Programme Proposal Form has been successful!</h1>
                 <h3 class="text-base">Please check your email for the downloadable Programme Report file that has been submitted.</h3><br>
                 <form action="{{ route('store') }}" method="post" enctype="multipart/form-data" >
                     {{ csrf_field() }}

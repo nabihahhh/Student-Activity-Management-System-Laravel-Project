@@ -163,28 +163,19 @@ class ReportController extends Controller
      */
     public function PostcreateStep3(Request $request)
     {
-         $Report = $request->session()->get('Report');
-
-        if(!isset($Report->file_path)) {
-            $request->validate([
-                'file_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ]);
-            $fileName = "productImage-" . time() . '.' . request()->file_path->getClientOriginalExtension();
-            $request->file_path->storeAs('file_path', $fileName);
+        $validatedData = $request->validate([
+            'file_path' => 'nullable:Reports,$id',
+            
+        ]);
+        if(empty($request->session()->get('Report'))){
+            $Report = new \App\Models\Report();
+            $Report->fill($validatedData);
+            $request->session()->put('Report', $Report);
+        }else{
             $Report = $request->session()->get('Report');
-            $Report->file_path = $fileName;
+            $Report->fill($validatedData);
             $request->session()->put('Report', $Report);
         }
-        
-
-        function store(Request $request)
-    {
-        $fileName = time() . '.' . $request->file->getClientOriginalExtension();
-        $request->file->move(public_path('files'), $fileName);
-
-        return response()->json(['file' => $fileName]);
-    }
-
         return view('Report.step4',compact('Report'));
        }
         

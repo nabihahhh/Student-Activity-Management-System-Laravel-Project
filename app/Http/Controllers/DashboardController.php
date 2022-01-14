@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Verify;
 
 class DashboardController extends Controller
 {
     public function index()
    {
+     
        if(Auth::user()->hasRole('staddAdmin')){
-            return view('dashboardStaddAdmin');
+          $verify = Verify::all();
+            return view('dashboardStaddAdmin',compact('verify'));
        }elseif(Auth::user()->hasRole('approvalCommittee')){
-            return view('dashboardApprovalCommittee');
+          $verify = Verify::all();
+            return view('dashboardApprovalCommittee',compact('verify'));
        }elseif(Auth::user()->hasRole('organizer')){
-        return view('dashboardOrganizer');
+          $verify = Verify::all();
+        return view('dashboardOrganizer',compact('verify'));
    }
    }
 

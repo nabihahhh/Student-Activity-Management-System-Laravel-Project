@@ -7,7 +7,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-10">
-                    @section('header', 'PROGRAMME REPORT FORM (PRF) - Create (Organization Representative Only)')<br>
+                    @section('header', 'PROGRAMME Proposal FORM (PRF) - Create (Organization Representative Only)')<br>
                     </div>
                     <div class="col-md-2">
                         <a href="{{ route('index') }}" class="btn btn-md btn-success float-right"><i class="fas fa-arrow-left"></i></a>
@@ -24,106 +24,106 @@
 
     <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen " style=" ">
                 <h3>Review Details</h3><br>
-                <form action="{{ route('store') }}" method="post" enctype="multipart/form-data" >
+                <form action="{{ route('store1') }}" method="post" enctype="multipart/form-data" >
                     {{ csrf_field() }}
                     <table class="table table-bordered">
                         <tr>
                             <td>Name:</td>
-                            <td><strong>{{$Report->programmeName}}</strong></td>
+                            <td><strong>{{$Proposal->programmeName}}</strong></td>
                         </tr>
                         <tr>
                             <td>Programme Organizer:</td>
-                            <td><strong>{{$Report->programmeOrganizer}}</strong></td>
+                            <td><strong>{{$Proposal->programmeOrganizer}}</strong></td>
                         </tr>
                         <tr>
                             <td>Venue:</td>
-                            <td><strong>{{$Report->venue}}</strong></td>
+                            <td><strong>{{$Proposal->venue}}</strong></td>
                         </tr>
                         <tr>
                             <td>outsiderParticipant:</td>
-                            <td><strong>{{$Report->outsiderParticipant}}</strong></td>
+                            <td><strong>{{$Proposal->outsiderParticipant}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal1:</td>
-                            <td><strong>{{$Report->sdgGoal1}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal1}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal2:</td>
-                            <td><strong>{{$Report->sdgGoal2}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal2}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal3:</td>
-                            <td><strong>{{$Report->sdgGoal3}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal3}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal4:</td>
-                            <td><strong>{{$Report->sdgGoal4}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal4}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal5:</td>
-                            <td><strong>{{$Report->sdgGoal5}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal5}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal6:</td>
-                            <td><strong>{{$Report->sdgGoal6}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal6}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal7:</td>
-                            <td><strong>{{$Report->sdgGoal7}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal7}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal8:</td>
-                            <td><strong>{{$Report->sdgGoal8}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal8}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal9:</td>
-                            <td><strong>{{$Report->sdgGoal9}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal9}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal10:</td>
-                            <td><strong>{{$Report->sdgGoal10}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal10}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal11:</td>
-                            <td><strong>{{$Report->sdgGoal11}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal11}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal12:</td>
-                            <td><strong>{{$Report->sdgGoal12}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal12}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal13:</td>
-                            <td><strong>{{$Report->sdgGoal13}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal13}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal14:</td>
-                            <td><strong>{{$Report->sdgGoal14}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal14}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal15:</td>
-                            <td><strong>{{$Report->sdgGoal15}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal15}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal16:</td>
-                            <td><strong>{{$Report->sdgGoal16}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal16}}</strong></td>
                         </tr>
                         <tr>
                             <td>sdgGoal17:</td>
-                            <td><strong>{{$Report->sdgGoal17}}</strong></td>
+                            <td><strong>{{$Proposal->sdgGoal17}}</strong></td>
                         </tr>
                         <tr>
                             <td>achievementsObservation:</td>
-                            <td><strong>{{$Report->achievementsObservation}}</strong></td>
+                            <td><strong>{{$Proposal->achievementsObservation}}</strong></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>Image:</td>
-                            <td><strong><img alt="{{$Report->file_path}}" src="/storage/app/public/file_path/{{$Report->file_path}}"/></strong></td>
-                        </tr>
+                            <td><strong><img alt="{{$Proposal->file_path}}" src="/storage/app/public/file_path/{{$Proposal->file_path}}"/></strong></td>
+                        </tr> -->
                     </table>
 
                     <div class="p-2 flex space-x-96">
                             <div class="flex justify-start">
-                                <a type="button" href="{{ route('report.create.step.3') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
+                                <a type="button" href="{{ route('proposal.create.step.5') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
                                     Back
                                 </a>
                             </div>
