@@ -78,8 +78,8 @@
                         <span class="">Undertaking</span><br>
                         </label>
                        
-                        <input type="hidden" name="undertaking" value="0">
-                        <input type="checkbox" class=" form-checkbox" id="undertaking" value="1" {{ old('undertaking') ? 'checked="checked"' : '' }} name="undertaking"><label for="undertaking">
+                        <input type="hidden" name="clarifyTick" value="0">
+                        <input type="checkbox" class=" form-checkbox" id="clarifyTick" value="1" {{ old('clarifyTick') ? 'checked="checked"' : '' }} name="clarifyTick"><label for="clarifyTick">
 
                         <span class="pl-3 text-gray-700 text-sm font-bold">
                             I hereby certify that the above information given are true and correct as to the best of my knowledge.  

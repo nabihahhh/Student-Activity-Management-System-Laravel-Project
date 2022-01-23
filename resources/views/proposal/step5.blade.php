@@ -106,21 +106,70 @@
                             </span>
 			            </div>
 
-                         <span class="text-gray-700 text-sm font-bold">i. ADVISOR/COORDINATOR FELLOW (MAHALLAH)</span>
+                        <div style=" "> 
+                            <span style=" " class="text-gray-700 text-sm font-bold">i. ADVISOR/COORDINATOR FELLOW (MAHALLAH)</span>
+                            <select style=" " id="approvalCommitteeName" name="approvalCommitteeName" value="{{ session()->get('proposal.approvalCommitteeName)') }}" class="mt-1 block w-3/6 rounded">
+                                <option>Adam Bin Ali</option>
+                                <option>syifa</option>
+                                <!-- <option>Van</option>
+                                <option>Lorry</option>
+                                <option>4WD</option>
+                                <option>MPV</option> -->
+                            </select>
+                        </div><br>
+
+                        <div style=" "> 
+                            <span style=" " class="text-gray-700 text-sm font-bold">ii. OFFICER-IN-CHARGE (K/C/D/I/O/M)/ ASSISTANT DIRECTOR (for joint/collaboration programme, signature of the main organiser is required in the Joint Programme Form)</span>
+                            <select style=" " id="approvalCommitteeName2" name="approvalCommitteeName2" value="{{ session()->get('proposal.approvalCommitteeName2)') }}" class="mt-1 block w-3/6 rounded">
+                                <option>Adam Bin Ali</option>
+                                <option>syifa</option>
+                                <!-- <option>Van</option>
+                                <option>Lorry</option>
+                                <option>4WD</option>
+                                <option>MPV</option> -->
+                            </select>
+                        </div><br>
+
+                        <div style=" "> 
+                            <span style=" " class="text-gray-700 text-sm font-bold">iii. HEAD OF DEPARTMENT/DEPUTY DIRECTOR/DEPUTY DEAN/PRINCIPAL</span>
+                            <select style=" " id="approvalCommitteeName3" name="approvalCommitteeName3" value="{{ session()->get('proposal.approvalCommitteeName3)') }}" class="mt-1 block w-3/6 rounded">
+                                <option>Adam Bin Ali</option>
+                                <option>syifa</option>
+                                <option>mai</option>
+                                <!-- <option>Van</option>
+                                <option>Lorry</option>
+                                <option>4WD</option>
+                                <option>MPV</option> -->
+                            </select>
+                        </div><br>
+
+                        <div style=" "> 
+                            <span style=" " class="text-gray-700 text-sm font-bold">iv. DEAN/DIRECTOR</span>
+                            <select style=" " id="approvalCommitteeName4" name="approvalCommitteeName4" value="{{ session()->get('proposal.approvalCommitteeName4)') }}" class="mt-1 block w-3/6 rounded">
+                                <option>Adam Bin Ali</option>
+                                <option>syifa</option>
+                                <!-- <option>Van</option>
+                                <option>Lorry</option>
+                                <option>4WD</option>
+                                <option>MPV</option> -->
+                            </select>
+                        </div><br>
+
+                         <!-- <span class="text-gray-700 text-sm font-bold">i. ADVISOR/COORDINATOR FELLOW (MAHALLAH)</span>
                         <input class="form-input mt-1 block w-3/6" type="text" name="approvalCommitteeName" class="form-control mb-2" placeholder="approvalCommitteeName" value="{{ session()->get('proposal.approvalCommitteeName)') }}">
-                        <br>
+                        <br> -->
 
-                        <span class="text-gray-700 text-sm font-bold">ii. OFFICER-IN-CHARGE (K/C/D/I/O/M)/ ASSISTANT DIRECTOR (for joint/collaboration programme, signature of the main organiser is required in the Joint Programme Form)</span>
+                        <!-- <span class="text-gray-700 text-sm font-bold">ii. OFFICER-IN-CHARGE (K/C/D/I/O/M)/ ASSISTANT DIRECTOR (for joint/collaboration programme, signature of the main organiser is required in the Joint Programme Form)</span>
                         <input class="form-input mt-1 block w-3/6" type="text" name="programmeManagerName" class="form-control mb-2" placeholder="Name" value="{{ session()->get('proposal.programmeManagerName)') }}">
-                        <br>
+                        <br> -->
 
-                        <span class="text-gray-700 text-sm font-bold">iii. HEAD OF DEPARTMENT/DEPUTY DIRECTOR/DEPUTY DEAN/PRINCIPAL</span>
+                        <!-- <span class="text-gray-700 text-sm font-bold">iii. HEAD OF DEPARTMENT/DEPUTY DIRECTOR/DEPUTY DEAN/PRINCIPAL</span>
                         <input class="form-input mt-1 block w-3/6" type="text" name="programmeManagerName" class="form-control mb-2" placeholder="Name" value="{{ session()->get('proposal.programmeManagerName)') }}">
-                        <br>
+                        <br> -->
 
-                        <span class="text-gray-700 text-sm font-bold">iv. DEAN/DIRECTOR</span>
+                        <!-- <span class="text-gray-700 text-sm font-bold">iv. DEAN/DIRECTOR</span>
                         <input class="form-input mt-1 block w-3/6" type="text" name="programmeManagerName" class="form-control mb-2" placeholder="Name" value="{{ session()->get('proposal.programmeManagerName)') }}">
-                        <br>
+                        <br> -->
 
                         <br><br>
                     <div class="p-2 flex space-x-96">

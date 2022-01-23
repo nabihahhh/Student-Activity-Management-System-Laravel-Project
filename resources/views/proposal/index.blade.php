@@ -20,7 +20,7 @@
                     <table class="table table-bordered">
                         <div class="p-2 flex space-x-96">
                             <div class="flex justify-end space-x-4">
-                                <a type="button" href="{{ route('report.create.step.3') }}" class="btn btn-primary bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
+                                <a type="button" href="{{ route('dashboard') }}" class="btn btn-primary bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
                                     Back to Homepage
                                     </a>
                             </div>

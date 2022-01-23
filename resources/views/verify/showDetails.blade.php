@@ -3,6 +3,7 @@
 @section('content')
 
 <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet">
+
 <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -52,16 +53,79 @@
         </tr>
         <tr>
           <th>Programme Venue </th>
-          <td>{{$Proposal['programmeVenue']}}</td>
+          <td>{{$Proposal['venue']}}</td>
         </tr>
         <tr>
           <th>Programme Date </th>
-          <td>{{$Proposal['startDate']}} <b>to</b> {{$Proposal['endDate']}}</td>
+          <td>{{$Proposal['date']}} <b>
+            <!-- to</b> {{$Proposal['endDate']}}</td> -->
         </tr>
-        <tr>
+
+        <tr>  
+          <tr>
           <th>Types of Programme </th>
-          <td>{{$Proposal['programmeType']}}</td>
+          <td>
+          @if ( $Proposal->studentDrivenProgramme )
+              <span style="">Student Driven Programme</span>
+              @else 
+              <span style="color:red"> </span>
+              @endif 
+          </td>
         </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->departmentDrivenProgramme )
+              <span style="">Department Driven Programme</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->invitationalProgramme)
+              <span style="">Invitational Programme</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->jointProgramme )
+              <span style="">Joint Programme</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->creditedProgramme)
+              <span style="">Credited Programme</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>
+          <th> </th>
+          <td>{{$Proposal['othersProgramme']}}</td>
+        </tr>
+       
         <tr>
           <td>&nbsp;</td>
         </tr>
@@ -74,28 +138,107 @@
         </tr>
         <tr>
           <th>Kull./Dept./Unit In Charge </th>
-          <td>{{$Proposal['in-charge']}}</td>
+          <td>{{$Proposal['kullDeptUnitInCharge']}}</td>
         </tr>
         <tr>
           <th>Society/Club/Association </th>
-          <td>{{$Proposal['soc_club_assoc']}}</td>
+          <td>{{$Proposal['societyClubAssociation']}}</td>
         </tr>
-        <tr>
-          <th>Type of Activity </th>
-          <td>{{$Proposal['activityType']}}</td>
+        <tr>  
+          <tr>
+
+          <th>Types of Activity </th>
+          <td>
+          @if ( $Proposal->participationActivity )
+              <td style="">Participation Activity</td>
+              @else 
+              <td style="color:red"></td>
+              @endif 
+          </td>
         </tr>
-        <tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->competitionActivity)
+              <span style="">Competition Activity</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>  
+          <tr>
           <th>Level of Activity </th>
-          <td>{{$Proposal['activityLevel']}}</td>
+          <td>
+          @if ( $Proposal->universityLevel)
+              <span style="">University Level</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
         </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->nationalLevel)
+              <span style="">National Level</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->InternationalLevel)
+              <span style="">International Level</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->societyDepartmentLevel)
+              <span style="">Society/Department Level</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+        <tr>  
+          <tr>
+          <th> </th>
+          <td>
+          @if ( $Proposal->compulsoryProgrammeLevel)
+              <span style="">Compulsory Programme Level</span>
+              @else 
+              <span style="color:red"></span>
+              @endif 
+          </td>
+        </tr>
+
+
         <tr>
           <th>Expected Number of Participants</th>
           <td><b>Local : </b>{{$Proposal['localParticipant']}}</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
           <td><b>International :</b>{{$Proposal['internationalParticipant']}}</td>
         </tr>
+        <!-- <tr>
+          <td>&nbsp;</td>
+          <td><b>International :</b>{{$Proposal['internationalParticipant']}}</td>
+        </tr> -->
         <tr>
           <th>Variation of Activity </th>
           <td>{{$Proposal['activityVariation']}}</td>

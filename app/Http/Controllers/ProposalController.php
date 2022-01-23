@@ -59,6 +59,7 @@ class ProposalController extends Controller
             'jointProgramme' => 'in:1,0',
             'creditedProgramme' => 'in:1,0',
             'othersProgramme' => 'nullable:Proposals,$id',
+            //add startdate and enddate, remove date
     
             
             
@@ -119,25 +120,25 @@ class ProposalController extends Controller
             'localParticipant' => 'nullable:Proposals,$id',
             'InternationalParticipant' => 'nullable:Proposals,$id',
 
-            'attendingCeremonyActivity' => 'nullable:Proposals,$id',
-            'bullettinNewsletterActivity' => 'nullable:Proposals,$id',
-            'communityServiceActivity' => 'nullable:Proposals,$id',
-            'counselingActivity' => 'nullable:Proposals,$id',
-            'promotionBoothActivity' => 'nullable:Proposals,$id',
-            'culturalActivity' => 'nullable:Proposals,$id',
-            'debateActivity' => 'nullable:Proposals,$id',
-            'educationalTripActivity' => 'nullable:Proposals,$id',
-            'entrepreneurshipActivity' => 'nullable:Proposals,$id',
-            'annualGrandMeetingActivity' => 'nullable:Proposals,$id',
-            'intellectualActivity' => 'nullable:Proposals,$id',
-            'leadershipActivity' => 'nullable:Proposals,$id',
-            'recreationalActivity' => 'nullable:Proposals,$id',
-            'socialGatheringActivity' => 'nullable:Proposals,$id',
-            'seminarConferenceActivity' => 'nullable:Proposals,$id',
-            'spiritualActivity' => 'nullable:Proposals,$id',
-            'sportActivity' => 'nullable:Proposals,$id',
-            'trainingActivity' => 'nullable:Proposals,$id',
-            'uniformBodiesActivity' => 'nullable:Proposals,$id',
+            'attendingCeremonyActivity' => 'in:1,0',
+            'bullettinNewsletterActivity' => 'in:1,0',
+            'communityServiceActivity' => 'in:1,0',
+            'counselingActivity' => 'in:1,0',
+            'promotionBoothActivity' => 'in:1,0',
+            'culturalActivity' => 'in:1,0',
+            'debateActivity' => 'in:1,0',
+            'educationalTripActivity' => 'in:1,0',
+            'entrepreneurshipActivity' => 'in:1,0',
+            'annualGrandMeetingActivity' => 'in:1,0',
+            'intellectualActivity' => 'in:1,0',
+            'leadershipActivity' => 'in:1,0',
+            'recreationalActivity' => 'in:1,0',
+            'socialGatheringActivity' => 'in:1,0',
+            'seminarConferenceActivity' => 'in:1,0',
+            'spiritualActivity' => 'in:1,0',
+            'sportActivity' => 'in:1,0',
+            'trainingActivity' => 'in:1,0',
+            'uniformBodiesActivity' => 'in:1,0',
             
             
         ]);
@@ -173,16 +174,45 @@ class ProposalController extends Controller
     {
          $Proposal = $request->session()->get('Proposal');
 
-        // if(!isset($Report->file_path)) {
-        //     $request->validate([
-        //         // 'file_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //     ]);
-        //     $fileName = "productImage-" . time() . '.' . request()->file_path->getClientOriginalExtension();
-        //     $request->file_path->storeAs('file_path', $fileName);
-        //     $Proposal = $request->session()->get('Proposal');
-        //     $Proposal->file_path = $fileName;
-        //     $request->session()->put('Proposal', $Proposal);
-        // }
+         $validatedData = $request->validate([
+            'sdgGoal1' => 'in:1,0',
+            'sdgGoal2' => 'in:1,0',
+            'sdgGoal3' => 'in:1,0',
+            'sdgGoal4' => 'in:1,0',
+            'sdgGoal5' => 'in:1,0',
+            'sdgGoal6' => 'in:1,0',
+            'sdgGoal7' => 'in:1,0',
+            'sdgGoal8' => 'in:1,0',
+            'sdgGoal9' => 'in:1,0',
+            'sdgGoal10' => 'in:1,0',
+            'sdgGoal11' => 'in:1,0',
+            'sdgGoal12' => 'in:1,0',
+            'sdgGoal13' => 'in:1,0',
+            'sdgGoal14' => 'in:1,0',
+            'sdgGoal15' => 'in:1,0',
+            'sdgGoal16' => 'in:1,0',
+            'sdgGoal17' => 'in:1,0',
+
+            'maqasidShariahFaith' => 'in:1,0',
+            'maqasidShariahLife' => 'in:1,0',
+            'maqasidShariahIntellect' => 'in:1,0',
+            'maqasidShariahLineage' => 'in:1,0',
+            'maqasidShariahWealth' => 'in:1,0',
+
+            'missionOfIiumIslamization' => 'in:1,0',
+            'missionOfIiumInternationalization' => 'in:1,0',
+            'missionOfIiumIntegration' => 'in:1,0',
+            
+        ]);
+        if(empty($request->session()->get('Proposal'))){
+            $Proposal = new \App\Models\Proposal();
+            $Proposal->fill($validatedData);
+            $request->session()->put('Proposal', $Proposal);
+        }else{
+            $Proposal = $request->session()->get('Proposal');
+            $Proposal->fill($validatedData);
+            $request->session()->put('Proposal', $Proposal);
+        }
         return view('Proposal.step4',compact('Proposal'));
        }
 
@@ -201,10 +231,23 @@ class ProposalController extends Controller
        public function PostcreateStep4(Request $request)
        {
            $validatedData = $request->validate([
-            //    'achievementsObservation' => 'nullable:Reports,$id',
-            //    'shortcomings' => 'nullable:Reports,$id',
-            //    'conclusion' => 'nullable:Reports,$id',
-            //    'suggestions' => 'nullable:Reports,$id',
+               'programmeManagerName' => 'nullable:Proposals,$id',
+               'programmeManagerMatricNo' => 'nullable:Proposals,$id',
+               'programmeManagerPhoneNo' => 'nullable:Proposals,$id',
+
+               'programmeSecretaryName' => 'nullable:Proposals,$id',
+               'programmeSecretaryMatricNo' => 'nullable:Proposals,$id',
+               'programmeSecretaryPhoneNo' => 'nullable:Proposals,$id',
+
+               'programmeTreasurerName' => 'nullable:Proposals,$id',
+               'programmeTreasurerMatricNo' => 'nullable:Proposals,$id',
+               'programmeTreasurerPhoneNo' => 'nullable:Proposals,$id',
+
+               'presidentClubSocietyName' => 'nullable:Proposals,$id',
+               'presidentClubSocietyMatricNo' => 'nullable:Proposals,$id',
+               'presidentClubSocietyPhoneNo' => 'nullable:Proposals,$id',
+
+               'clarifyTick' => 'required| in:1,0',//clarify tick add db
                
            ]);
            if(empty($request->session()->get('Proposal'))){
@@ -234,18 +277,28 @@ class ProposalController extends Controller
        public function PostcreateStep5(Request $request)
        {
            $validatedData = $request->validate([
+                'balanceBudget' => 'nullable:Proposals,$id',
+                'budgetRequestedFromSTADDToCitra' => 'nullable:Proposals,$id',
+                'budgetRequestedFromKuliyyah' => 'nullable:Proposals,$id',
+                'budgetRequestedFromMahallah' => 'nullable:Proposals,$id',
+                'budgetRequestedFromSponsors' => 'nullable:Proposals,$id',
+
+                'typeTransportation' => 'nullable:Proposals,$id',
+                'quantityTransportation' => 'nullable:Proposals,$id',
+                'typeTransportation' => 'nullable:Proposals,$id',
+
                 'approvalCommitteeName' => 'nullable:Proposals,$id',
-            //    'shortcomings' => 'nullable:Reports,$id',
-            //    'conclusion' => 'nullable:Reports,$id',
-            //    'suggestions' => 'nullable:Reports,$id',
+                'approvalCommitteeName2' => 'nullable:Proposals,$id',
+                'approvalCommitteeName3' => 'nullable:Proposals,$id',
+                'approvalCommitteeName4' => 'nullable:Proposals,$id',
+
+
                
            ]);
 
            if(empty($request->session()->get('Proposal'))){
             $Proposal = new \App\Models\Proposal();
             $Proposal->fill($validatedData);
-            // $Report->sdgGoal1 = $request->has('sdgGoal1');
-            // $Report->sdgGoal1 = $request->has('sdgGoal1');
             $request->session()->put('Proposal', $Proposal);
         }else{
             $Proposal = $request->session()->get('Proposal');
@@ -304,17 +357,30 @@ class ProposalController extends Controller
     
       $keyword = $request->get('keyword');
       $user = Auth::user()->name ;
+      $user2 = Auth::user()->name ;
+      $user3 = Auth::user()->name ;
+      $user4 = Auth::user()->name ;
       
       
       $proposal = DB::table('proposals')
       ->where('programmeName', 'like', '%'.$keyword.'%')
-      ->orWhere('programmeOrganizer', 'like', '%'.$keyword.'%')
+      ->where('programmeOrganizer', 'like', '%'.$keyword.'%')
+      
+      ->where('approvalCommitteeName', 'like', '%'.$user.'%')
+      ->orWhere('approvalCommitteeName2', 'like', '%'.$user2.'%')
+      ->orWhere('approvalCommitteeName3', 'like', '%'.$user3.'%')
+      ->orWhere('approvalCommitteeName4', 'like', '%'.$user4.'%')
       ->get();
     //   ->paginate(5);
     //   $proposal = DB::table('proposals')
     //   ->where('proposals.approvalCommitteeName', '_approval_committee.approvalCommitteeName')
     //   ->paginate(5);
-      return view('verify.showProposalTable', ['proposal' => $proposal->where('approvalCommitteeName', 'like', $user)]);
+      return view('verify.showProposalTable', ['proposal' => $proposal->where('programmeStatus', 'Pending approvals')
+    //   ->where('approvalCommitteeName', 'like', $user)
+        // ->orWhere('approvalCommitteeName2', 'like', $user)
+        // ->orWhere('approvalCommitteeName3', 'like', $user)
+        // ->orWhere('approvalCommitteeName4', 'like', $user)
+        ]);
 
     }
     

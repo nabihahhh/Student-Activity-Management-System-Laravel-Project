@@ -39,38 +39,41 @@ class VerifyController extends Controller
      */
     public function verifyFormPost(Request $request, $id)
     {
-        $proposal = Proposal::findOrFail($id);
-        $verify = $proposal->replicate();
-        $verify->setTable('verify');
+        // $proposal = Proposal::findOrFail($id);
+        // $proposal = $proposal->replicate();
+        // $proposal->setTable('proposal');
 
         switch ($request->input('action')) {
           case 'reject':
 
-                $verify->id = $id;
-                $verify->programmeStatus = value('Reject');
-                $verify->verificationComment = request('verificationComment');
-                $verify->save();
-                $proposal->delete();
+                // $Proposal->id = $id;
+                Proposal::where('id', $id)->update(array('programmeStatus' => 'Reject'));
+                Proposal::where('id', $id)->update(array('verificationComment' => request('verificationComment')));
+                // $Proposal->save();
+                // $Proposal->delete();
 
                break;
 
           case 'KIV':
 
-              $verify->id = $id;
-              $verify->programmeStatus = value('Pending');
-              $verify->verificationComment = request('verificationComment');
-              $verify->save();
-              $proposal->delete();
+              // $Proposal->id = $id;
+              // $Proposal->programmeStatus = value('Keep in View');
+              Proposal::where('id', $id)->update(array('programmeStatus' => 'Keep in View'));
+              Proposal::where('id', $id)->update(array('verificationComment' => request('verificationComment')));
+              // $Proposal->save();
+              // $Proposal->delete();
 
               break;
 
           case 'accept':
 
-              $verify->id = $id;
-              $verify->programmeStatus = value('Accept');
-              $verify->verificationComment = request('verificationComment');
-              $verify->save();
-              $proposal->delete();
+              // $Proposal->id = $id;
+              Proposal::where('id', $id)->update(array('programmeStatus' => 'Accept'));
+              // $Proposal->programmeStatus = value('Accept');
+              Proposal::where('id', $id)->update(array('verificationComment' => request('verificationComment')));
+              // $Proposal->verificationComment = request('verificationComment');
+              // $Proposal->save();
+              // $Proposal->delete();
 
               break;
       }
