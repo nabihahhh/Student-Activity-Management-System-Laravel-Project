@@ -29,6 +29,11 @@ Route::post('/remove-image', [ProposalController::class,'removeImage'])->name('r
 Route::post('/store1', [ProposalController::class,'store1'])->name('store1');
 Route::get('/data1', [ProposalController::class,'index1'])->name('index1');
 
+
+Route::get('proposal/{proposal}/showSend', 'DashboardController@showSend')->name('admin.proposal.showSend');
+Route::post('proposal/{proposal}/send', 'DashboardController@send')->name('admin.proposal.send');
+
+
 Route::get('/report-step-1', [ReportController::class, 'createStep1'])->name('signup');
 Route::post('/report-post-step-1', [ReportController::class,'PostcreateStep1'])->name('report.post.step.1');
 Route::get('/report-create-step-2', [ReportController::class,'createStep2'])->name('report.create.step.2');
@@ -38,6 +43,10 @@ Route::post('/report-post-step-3', [ReportController::class,'PostcreateStep3'])-
 Route::post('/remove-image', [ReportController::class,'removeImage'])->name('remove.image');
 Route::post('/store', [ReportController::class,'store'])->name('store');
 Route::get('/data', [ReportController::class,'index'])->name('index');
+
+
+    Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
+
   
 // for approval committee
 Route::group(['middleware' => ['auth', 'role:approvalCommittee']], function() { 
@@ -54,7 +63,27 @@ Route::group(['middleware' => ['auth', 'role:approvalCommittee']], function() {
     //approval committee view: PPF details from (History list of PPF that has been verify by user)
     //organizer view:  PPF details from (PPF list that has been submitted (with status)) //route: organizer dashboard view 
     //add download approval letter button
-    Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
+    // Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
+
+    //approval committee view: list of programme proposal need to be verify
+    Route::get('/list-PPF-required-verification', 'ProposalController@searchKeyboard')->name('list.PPF.Verify'); 
+});
+
+Route::group(['middleware' => ['auth', 'role:staddAdmin']], function() { 
+    //approval committee view: show details of selected PPF from (list of programme proposal need to be verify)
+    Route::get('/showStatus/{id}','VerifyController@verifyFormCreate')->name('verify.Form.Create'); 
+
+    //approval committee view: after submit feedback and action of selected PPF from (list of programme proposal need to be verify)
+    Route::post('/postStatus/{id}','VerifyController@verifyFormPost')->name('verify.Form.Post'); 
+
+    //approval committee view: History list of PPF that has been verify by user (with status)
+    //organizer view: History list of PPF that has been submitted (with status) //route: organizer dashboard view 
+    Route::get('/showListStatus','VerifyController@verifyList')->name('show.List.Status'); 
+
+    //approval committee view: PPF details from (History list of PPF that has been verify by user)
+    //organizer view:  PPF details from (PPF list that has been submitted (with status)) //route: organizer dashboard view 
+    //add download approval letter button
+    // Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
 
     //approval committee view: list of programme proposal need to be verify
     Route::get('/list-PPF-required-verification', 'ProposalController@searchKeyboard')->name('list.PPF.Verify'); 
@@ -73,6 +102,17 @@ Route::get('/', 'HomeController@index');
 //auth route for both 
 Route::group(['middleware' => ['auth']], function() { 
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+   
+});
+
+Route::post('proposal/{user_id}/send', 'DashboardController@send')->name('admin.send');
+
+Route::get('/home', function () {
+    if (session('status')) {
+        return redirect()->route('dashboard')->with('status', session('status'));
+    }
+
+    return redirect()->route('dashboard');
 });
 
 // // for users

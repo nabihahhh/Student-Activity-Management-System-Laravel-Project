@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\SessionGuard;
 use App\Http\Controllers\Controller;
 use App\Models\Proposal;
+use App\Models\User;
+use App\Models\Status;
+use App\Models\Role;
 use App\Models\File;
 
 
@@ -51,7 +54,7 @@ class ProposalController extends Controller
             'programmeBudget' => 'nullable:Proposals',
             'programmeName' => 'required|unique:Proposals',
             'programmeOrganizer' => 'nullable:Proposals,$id',
-            'date' => 'nullable:Proposals,$id',
+            // 'startDate' => 'nullable:Proposals,$id',
             'venue' => 'nullable:Proposals,$id',
             'studentDrivenProgramme' => 'in:1,0',
             'departmentDrivenProgramme' => 'in:1,0',
@@ -265,6 +268,18 @@ class ProposalController extends Controller
        public function createStep5(Request $request)
        {
            $Proposal = $request->session()->get('Proposal');
+        //    $users = $request->session()->get('User');
+           
+
+            if ($Proposal->status_id == 1) {
+                $role = 'approvalCommittee';
+                $users = Role::find(2)->users->pluck('name', 'id');
+            } else if (in_array($Proposal->status_id, [3,4])) {
+                $role = 'approvalCommittee';
+                $users = Role::find(2)->users->pluck('name', 'id');
+            } else {
+                // abort(Response::HTTP_FORBIDDEN, '403 Forbidden');
+            }
    
            return view('proposal.step5',compact('Proposal'));
        }
@@ -287,10 +302,10 @@ class ProposalController extends Controller
                 'quantityTransportation' => 'nullable:Proposals,$id',
                 'typeTransportation' => 'nullable:Proposals,$id',
 
-                'approvalCommitteeName' => 'nullable:Proposals,$id',
-                'approvalCommitteeName2' => 'nullable:Proposals,$id',
-                'approvalCommitteeName3' => 'nullable:Proposals,$id',
-                'approvalCommitteeName4' => 'nullable:Proposals,$id',
+                'approvalCommittee_id' => 'nullable:Proposals,$id',
+                'approvalCommittee2_id' => 'nullable:Proposals,$id',
+                'approvalCommittee3_id' => 'nullable:Proposals,$id',
+                'approvalCommitteeName4)id' => 'nullable:Proposals,$id',
 
 
                
@@ -300,11 +315,23 @@ class ProposalController extends Controller
             $Proposal = new \App\Models\Proposal();
             $Proposal->fill($validatedData);
             $request->session()->put('Proposal', $Proposal);
-        }else{
-            $Proposal = $request->session()->get('Proposal');
-            $Proposal->fill($validatedData);
-            $request->session()->put('Proposal', $Proposal);
-        }
+            }else{
+                $Proposal = $request->session()->get('Proposal');
+                $Proposal->fill($validatedData);
+                $request->session()->put('Proposal', $Proposal);
+            }
+
+            // abort_if(!auth()->user()->is_admin, Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+            if ($Proposal->status_id == 1) {
+                $role = 'approvalCommittee';
+                $users = Role::find(2)->users->pluck('name', 'id');
+            } else if (in_array($Proposal->status_id, [3,4])) {
+                $role = 'approvalCommittee';
+                $users = Role::find(2)->users->pluck('name', 'id');
+            } else {
+                // abort(Response::HTTP_FORBIDDEN, '403 Forbidden');
+            }
         return view('Proposal.step6',compact('Proposal'));
        }
 
@@ -337,7 +364,7 @@ class ProposalController extends Controller
     public function store1(Request $request)
     {
         $Proposal = $request->session()->get('Proposal');
-        // $date= $request->input('date');
+        
         Proposal::create($request->all());
 
         $Proposal->save();
@@ -365,8 +392,7 @@ class ProposalController extends Controller
       $proposal = DB::table('proposals')
       ->where('programmeName', 'like', '%'.$keyword.'%')
       ->where('programmeOrganizer', 'like', '%'.$keyword.'%')
-      
-      ->where('approvalCommitteeName', 'like', '%'.$user.'%')
+      ->orwhere('approvalCommitteeName', 'like', '%'.$user.'%')
       ->orWhere('approvalCommitteeName2', 'like', '%'.$user2.'%')
       ->orWhere('approvalCommitteeName3', 'like', '%'.$user3.'%')
       ->orWhere('approvalCommitteeName4', 'like', '%'.$user4.'%')
@@ -383,6 +409,7 @@ class ProposalController extends Controller
         ]);
 
     }
+
     
 }
 

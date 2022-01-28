@@ -57,7 +57,7 @@
         </tr>
         <tr>
           <th>Programme Date </th>
-          <td>{{$Proposal['date']}} <b>
+          <td>{{$Proposal['startDate']}} <b>
             <!-- to</b> {{$Proposal['endDate']}}</td> -->
         </tr>
 

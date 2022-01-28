@@ -1,6 +1,9 @@
+
 @extends('layouts.app')
 
 @section('content')
+
+
 
 <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet">
 
@@ -107,10 +110,12 @@
 			            </div>
 
                         <div style=" "> 
+                       
                             <span style=" " class="text-gray-700 text-sm font-bold">i. ADVISOR/COORDINATOR FELLOW (MAHALLAH)</span>
-                            <select style=" " id="approvalCommitteeName" name="approvalCommitteeName" value="{{ session()->get('proposal.approvalCommitteeName)') }}" class="mt-1 block w-3/6 rounded">
-                                <option>Adam Bin Ali</option>
-                                <option>syifa</option>
+                            <select style=" " id="approvalCommittee_id" name="approvalCommittee_id" value="{{ session()->get('proposal.approvalCommittee_id)') }}" class="mt-1 block w-3/6 rounded">
+
+                                <option>1</option>
+                                <option>2</option>
                                 <!-- <option>Van</option>
                                 <option>Lorry</option>
                                 <option>4WD</option>
@@ -148,6 +153,7 @@
                             <select style=" " id="approvalCommitteeName4" name="approvalCommitteeName4" value="{{ session()->get('proposal.approvalCommitteeName4)') }}" class="mt-1 block w-3/6 rounded">
                                 <option>Adam Bin Ali</option>
                                 <option>syifa</option>
+                                <option>nabihah</option>
                                 <!-- <option>Van</option>
                                 <option>Lorry</option>
                                 <option>4WD</option>

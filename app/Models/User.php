@@ -8,8 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -19,6 +19,8 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    
 
     /**
      * The attributes that are mass assignable.
@@ -60,4 +62,41 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function roles()
+    { 
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->roles->contains(1);
+    }
+
+    public function getIsUserAttribute()
+    {
+        return $this->roles->contains(2);
+    }
+
+    public function getIsAnalystAttribute()
+    {
+        return $this->roles->contains(3);
+    }
+
+    public function getIsCfoAttribute()
+    {
+        return $this->roles->contains(4);
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        self::created(function (User $user) {
+            $registrationRole = config('panel.registration_default_role');
+
+            if (!$user->roles()->get()->contains($registrationRole)) {
+                $user->roles()->attach($registrationRole);
+            }
+        });
+    }
 }

@@ -76,7 +76,7 @@
                         <label for="name">
                             <span class="text-gray-700">3. Date</span>
                         </label>
-                        <input class="form-input mt-1 block w-1/4" type="date" name="date" class="form-control mb-2" placeholder="Enter" value="{{ session()->get('proposal.date)') }}">
+                        <input class="form-input mt-1 block w-1/4" type="date" name="startDate" class="form-control mb-2" placeholder="Enter" value="{{ session()->get('proposal.startDate)') }}">
                         <br>
 
                         <label class="inline-flex items-center"  for="name">4. Type of Programme (Please tick which relevant)</label><br>

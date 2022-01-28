@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Verify;
 use App\Models\Proposal;
 use Illuminate\Http\Request;
+use DB;
 
 class VerifyController extends Controller
 {
@@ -43,8 +44,12 @@ class VerifyController extends Controller
         // $proposal = $proposal->replicate();
         // $proposal->setTable('proposal');
 
+
         switch ($request->input('action')) {
+          
+
           case 'reject':
+              
 
                 // $Proposal->id = $id;
                 Proposal::where('id', $id)->update(array('programmeStatus' => 'Reject'));
@@ -68,7 +73,21 @@ class VerifyController extends Controller
           case 'accept':
 
               // $Proposal->id = $id;
-              Proposal::where('id', $id)->update(array('programmeStatus' => 'Accept'));
+              // DB::table('proposals')
+              //     ->where('id', $id)
+              //     ->update([
+              //         'count' => DB::raw('count + 1'),
+              //     ]);
+              
+              // $count = Proposal::find($count='4');
+              
+              
+              // if ($count == '4') {
+                Proposal::where('id', $id)->update(array('programmeStatus' => 'Accept'));
+              // }
+              // else{
+              //   echo "Have a good night!";
+              // }
               // $Proposal->programmeStatus = value('Accept');
               Proposal::where('id', $id)->update(array('verificationComment' => request('verificationComment')));
               // $Proposal->verificationComment = request('verificationComment');
@@ -102,8 +121,9 @@ class VerifyController extends Controller
      */
     public function showVerifyDetails($id)
     {
-        $verify = Verify::findOrFail($id);
-        return view('verify.showVerifyDetails', compact('verify','id'));
+
+        $proposal = Proposal::findOrFail($id);
+        return view('verify.showVerifyDetails', compact('proposal','id'));
     }
 
     /**
