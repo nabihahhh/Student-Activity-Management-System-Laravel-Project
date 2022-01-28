@@ -20,23 +20,22 @@
   <div class="container p-4 shadow-md rounded-md text-left bg-gray-100" style="max-width: 83.333333%">
     <div class="p-4 shadow-md rounded-md text-left items-top bg-gray-50 flex-auto" style="max-width: max-content object-position: right">
 
-    <p class="status text-left text-gray-600 text-sm font-light"><b>Status:</b>
+
             <div class="status py-3 px-6 text-left whitespace-nowrap">
               @if ($proposal->status_id === 14)
-                  <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Approved</span>
+                  <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Status: Approved</span>
                   
               @elseif ($proposal->status_id === 15)
-                  <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Rejected</span>
+                  <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Status: Rejected</span>
               @else
-                  <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Pending approvals</span>
+                  <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Status: Pending approvals</span>
               @endif
             </div>
-        </p>
-
+        
+          
         @if ($proposal->status_id === 14)
-            <p class="status text-left text-gray-600 text-sm font-light"><b>View:</b>
-              
-            <a href="/ApplicantApproval/{{$proposal['id']}}" target="_blank" class="btn btn-success bg-green-700 hover:bg-green-900 text-white text-xs font-bold py-2 px-4 rounded text-right">View Approval Letter</a>
+            
+            <a href="/ApplicantApproval/{{$proposal['id']}}" target="_blank" class=" btn btn-success bg-blue-600 hover:bg-blue-800 text-white text-xs font-bold py-2 px-4 rounded text-right">View Approval Letter</a>
         @endif
         <br><br>
 

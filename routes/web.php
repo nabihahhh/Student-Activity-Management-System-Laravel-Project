@@ -47,7 +47,7 @@ Route::get('/data', [ReportController::class,'index'])->name('index');
 
     Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
 
-  
+    Route::get('/ApplicantApproval/{id}', 'LetterController@pdf');
 // for approval committee
 Route::group(['middleware' => ['auth', 'role:approvalCommittee']], function() { 
     //approval committee view: show details of selected PPF from (list of programme proposal need to be verify)
