@@ -15,12 +15,12 @@
                 </div> 
             </div>
 
- <div class="container p-4 max-w-screen-lg mx-auto pb-10 flex justify-center bg-gray-100" style=" "> <!--another box layering below form box -->
+ <div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center  " style=" "> <!--another box layering below form box -->
     <!-- <div class="p-4 rounded-md text-left flex-auto  " style="max-width: max-content ">
     <img class="object-scale-down h-48 w-full"  src="https://ih1.redbubble.net/image.1066412296.0216/fposter,small,wall_texture,product,750x1000.u1.jpg">
     </div> -->
 
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen" style=" ">
+    <div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4" style=" ">
        
 
             <div class="card-body text-rose-600 ">
@@ -42,7 +42,7 @@
 
                     
                     <div class="flex -mr-px ">
-				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
                                 PROGRAMME INFORMATION
                             </span>
 			            </div>
@@ -66,17 +66,19 @@
                         <input class="form-input mt-1 block w-3/4" type="text" name="programmeOrganizer" class="form-control mb-2" placeholder="Enter" value="{{ session()->get('proposal.programmeOrganizer)') }}">
                         <br>
 
-                        <label for="name">
-                            <span class="text-gray-700">4. Venue</span> 
+                        <label for="venue">
+                            <span class="text-gray-700">4. Venue</span>
                         </label>
                         <input class="form-input mt-1 block w-3/4" type="text" name="venue" class="form-control mb-2" placeholder="Enter" value="{{ session()->get('proposal.venue)') }}">
                         <br>
+
+                        
 
 
                         <label for="name">
                             <span class="text-gray-700">3. Date</span>
                         </label>
-                        <input class="form-input mt-1 block w-1/4" type="date" name="startDate" class="form-control mb-2" placeholder="Enter" value="{{ session()->get('proposal.startDate)') }}">
+                        <input class="form-input mt-1 block w-1/4" type="date" name="date" class="form-control mb-2" placeholder="Enter" value="{{ session()->get('proposal.date)') }}">
                         <br>
 
                         <label class="inline-flex items-center"  for="name">4. Type of Programme (Please tick which relevant)</label><br>

@@ -71,14 +71,19 @@
   <div class="min-w-screen min-h-screen bg-gray-100 flex-auto justify-center bg-gray-100 font-sans overflow-hidden">
 
     <table class="table-fixed border-collapse border-white leading-relaxed  py-3 px-6 whitespace-nowrap text-gray-600 text-xl mt-4 font-extralight w-full">
-      <tr>
+    <tr>
         
-        <th class=" text-gray-600 text-start">&emsp;&emsp;Pending Approval</th>
-      </tr>
-      <tr>
+        <tr>   
         <th>&nbsp;</th>
-        <td>&nbsp;</td>
-      </tr>
+          
+          <th class="bg-green-700 text-white text-center shadow-md rounded-md text-sm">PENDING APPROVALS</th>
+          
+        </tr>
+        <tr>
+        <th>&nbsp;</th>
+          <th>&nbsp;</th>
+          <th>&nbsp;</th>
+        </tr>
     </table>
 
     <div class="w-full">
@@ -102,18 +107,35 @@
                   <td class="py-3 px-6 text-center whitespace-nowrap">
                     
                     <span class="">
-                        {{ $user->is_user && $proposal->status_id < 14 ? $defaultStatus->name : $proposal->status->name}}
+                        {{ $user->is_user && $proposal->status_id < 16 ? $defaultStatus->name : $proposal->status->name}}
                     </span>
         
                   </td>
                   <td class="py-3 px-6 text-center whitespace-nowrap">
+                  @if($user->is_admin && in_array($proposal->status_id, [1, 3, 6, 9]))
+                                    <a class="btn btn-xs btn-success" href="{{ route('admin.proposal.showSend', $proposal->id) }}">
+                                        Send to
+                                        @if($proposal->status_id == 1)
+                                            Approval Committee 1
+                                        @elseif($proposal->status_id == 3)
+                                            Approval Committee 2
+                                        @elseif($proposal->status_id == 6)
+                                            Approval Committee 3
+                                        @elseif($proposal->status_id == 9)
+                                            Approval Committee 4
+                                        @endif
+                                    </a>
+                    @elseif(($proposal->status_id == 2) || ($proposal->status_id == 5)
+                    || ($proposal->status_id == 8) || ($proposal->status_id == 11))
+                                    <a class="btn btn-xs btn-success bg-blue-400 text-white py-0.3 px-1 rounded-full text-xs" href="{{ route('admin.proposal.showAnalyze', $proposal->id) }}">
+                                        Submit analysis
+                                    </a>
+                    @endif
                     <div class="flex item-center justify-center">
-                      <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                        <a href="/showverifyDetails/{{$proposal['id']}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg></a>
+                      <!-- <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"> -->
+                      <a class="btn btn-xs btn-primary bg-green-200 text-green-600 py-0.3 px-2 rounded-full text-xs" href="{{ route('admin.proposal.show', $proposal->id) }}">
+                                        {{ trans('View') }} 
+                                    </a>
                       </div>
                     </div>
                   </td>

@@ -1,10 +1,19 @@
+
 <x-guest-layout>
-    <x-auth-card>
+<div class="relative ">
+    <x-auth-card class="">
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div class="flex justify-between absolute inset-x-20 top-20" href="/">
+                <div class="px-1"><x-application-logo class="w-5 h-5 fill-current text-gray-500" /></div>
+                <div class="text-4xl font-sans font-bold"><p>Student Activity</p><p>Management System</p></div>
+               
+</div>
+                <!-- <div class="border-8 border-gray-100"></div>
+                <div class="border-2 border-gray-100"></div>
+                <div class="border border-gray-300"></div>
+                <div class="border-8 border-gray-100"></div> -->
         </x-slot>
+        
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -47,10 +56,11 @@
                     </a>
                 @endif
 
-                <x-button class="ml-3">
+                <x-button class="ml-3 ">
                     {{ __('Log in') }}
                 </x-button>
             </div>
         </form>
     </x-auth-card>
+    </div>
 </x-guest-layout>

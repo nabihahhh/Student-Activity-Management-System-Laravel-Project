@@ -31,6 +31,11 @@ class Proposal extends Model
         return $this->belongsTo(User::class, 'cfo_id');
     }
 
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by_id');

@@ -18,14 +18,14 @@
             </div>
            
 
-<div class="container p-4 max-w-screen-lg mx-auto pb-10 flex justify-center bg-gray-50 " >
+<div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center  " >
 
        <!-- insert image here -->
     <!-- <div class="p-4 rounded-md text-left flex-auto w-max" style="">
         <img class="object-scale-down h-48 w-full"  src="https://ih1.redbubble.net/image.1066412296.0216/fposter,small,wall_texture,product,750x1000.u1.jpg">
     </div> -->
 
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen " style=" ">
+    <div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4" style=" ">
 
     <div class="card-body">
                 @if ($errors->any())
@@ -41,6 +41,13 @@
                 <form action="{{ route('report.post.step.2') }}" method="POST">
                     @csrf
                     <div class="form-group">
+
+                    <div class="flex -mr-px ">
+				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                                PROGRAMME INFORMATION
+                            </span>
+			            </div>
+                        <br>
 
                         <label for="name">
                             <span class="text-gray-700">Achievements/observation</span>
@@ -66,12 +73,7 @@
                         <input class="form-input mt-1 block w-full" type="text" name="suggestions" class="form-control mb-2" placeholder="Enter" value="{{ session()->get('report.suggestions)') }}">
                         <br>
 
-                        <div class="p-2 flex space-x-96">
-                            <div class="flex justify-start">
-                                <a type="button" href="{{ route('signup') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
-                                    Back
-                                </a>
-                            </div>
+                        
 
                             <div class="flex justify-end space-x-4">
                                 <button type="submit" class="btn btn-primary bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -84,7 +86,14 @@
                                     Next
                                 </button>
                             </div>
-                        </div>
+
+                            <div class="p-2 flex space-x-96">
+                        <div class="flex justify-start">
+                                <a type="button" href="{{ route('signup') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
+                                    Back
+                                </a>
+                            </div></div>
+                        
 
                     </div>
                 </form>

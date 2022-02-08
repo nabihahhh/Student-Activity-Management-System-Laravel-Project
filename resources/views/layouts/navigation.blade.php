@@ -47,9 +47,10 @@
                     <x-slot name="trigger">
                         <button class="space-x-4 flex items-center text-sm font-medium text-white hover:text-white hover:border-gray-300 focus:outline-none focus:text-white focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div>
+                            <a href="">|</a>
                             <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
+                            
                             <x-nav-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">

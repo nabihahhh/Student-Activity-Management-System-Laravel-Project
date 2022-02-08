@@ -3,18 +3,25 @@
 @section('content')
 
 <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet">
-<div class="container">
-<div class="container p-4 shadow-md rounded-md text-left bg-gray-100 flex" style="max-width: 83.333333%">
-<div class="p-4 rounded-md text-left flex-auto  " style="max-width: max-content ">
-    
-    </div>
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto" style="max-width: max-content object-position: right">
-        <div class="card">
+
+<div class="card">
             <div class="card-header">
+                <div class="row">
+                    <div class="col-md-10">
+                    @section('header', 'Programme Proposal Form  (PRF)')<br>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('index') }}" class="btn btn-md btn-success float-right"><i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div> 
             </div>
-            <div class="card-body"> 
-                <h1 class="text-3xl">Your submission for the Programme Proposal Form has been successful!</h1>
-                <h3 class="text-base">Please check your email for the downloadable Programme Report file that has been submitted.</h3><br>
+
+            <div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center  " >
+<div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4">
+       
+            
+                <h1 class="text-3xl">Your submission for the Programme Proposal Form (PPF) has been successful!</h1><br>
+                <h3 class="text-base">Please wait for the approval letter in a few days of working hours after submitting the form.<br><br>
                 <form action="{{ route('store') }}" method="post" enctype="multipart/form-data" >
                     {{ csrf_field() }}
                     <table class="table table-bordered">
@@ -30,8 +37,7 @@
                     
 
                 </form>
-            </div>
+            
         </div>
-    </div>
-</div>
+    
 @endsection 

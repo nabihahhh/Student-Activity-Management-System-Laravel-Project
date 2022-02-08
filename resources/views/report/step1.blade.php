@@ -17,20 +17,22 @@
             </div>
            
 
-<div class="container p-4 max-w-screen-lg mx-auto pb-10 flex justify-center bg-gray-50 " >
+<div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center " >
     <!-- insert image here -->
     <!-- <div class="p-4 rounded-md text-left flex-auto w-max" style="">
         <img class="object-scale-down h-48 w-full"  src="https://ih1.redbubble.net/image.1066412296.0216/fposter,small,wall_texture,product,750x1000.u1.jpg">
     </div> -->
 
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen " style=" ">
+    <div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4 " style=" ">
 
     <div class="card-body">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
+                            <span style="color:red;">
                                 <li>{{ $error }}</li>
+                                </span>
                             @endforeach
                         </ul>
                     </div>
@@ -43,7 +45,7 @@
 
                     
                     <div class="flex -mr-px ">
-				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white rounded shadow-md rounded-md border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
                                 PROGRAMME INFORMATION
                             </span>
 			            </div>

@@ -11,6 +11,14 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laratrust\Traits\LaratrustUserTrait;
 use Laravel\Passport\HasApiTokens;
 
+use App\Notifications\VerifyUserNotification;
+use Carbon\Carbon;
+use Hash;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use \DateTimeInterface;
+
 class User extends Authenticatable
 {
     use LaratrustUserTrait;
@@ -78,7 +86,7 @@ class User extends Authenticatable
         return $this->roles->contains(2);
     }
 
-    public function getIsAnalystAttribute()
+    public function getIsApprovalCommitteeAttribute()
     {
         return $this->roles->contains(3);
     }
@@ -86,6 +94,11 @@ class User extends Authenticatable
     public function getIsCfoAttribute()
     {
         return $this->roles->contains(4);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'id');
     }
 
     public function __construct(array $attributes = [])

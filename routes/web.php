@@ -46,6 +46,20 @@ Route::get('/data', [ReportController::class,'index'])->name('index');
 
 
     Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
+    Route::get('proposal/{proposal}/showAnalyze', 'DashboardController@showAnalyze')->name('admin.proposal.showAnalyze');
+    Route::post('proposal/{proposal}/analyze', 'DashboardController@analyze')->name('admin.proposal.analyze');
+
+    Route::get('report/{report}/showAnalyze', 'DashboardController@showAnalyze2')->name('admin.report.showAnalyze');
+    Route::post('report/{report}/analyze', 'DashboardController@analyze2')->name('admin.report.analyze');
+
+
+    Route::group(['prefix' => 'staddAdmin', 'as' => 'admin.', 'namespace' => 'staddAdmin', 'middleware' => ['auth']], function () {
+    Route::resource('proposal', 'ProposalController');
+    Route::resource('users', 'UsersController');
+});
+
+    // Route::delete('comments/destroy', 'CommentsController@massDestroy')->name('comments.massDestroy');
+    Route::resource('feedback', 'FeedbackController');
 
     Route::get('/ApplicantApproval/{id}', 'LetterController@pdf');
 // for approval committee
@@ -105,6 +119,10 @@ Route::group(['middleware' => ['auth']], function() {
    
 });
 
+Route::get('/pending-report', [DashboardController::class,'index2'])->name('pending.prf');
+Route::get('/progress-report', [DashboardController::class,'index3'])->name('progress.report');
+
+
 Route::post('proposal/{user_id}/send', 'DashboardController@send')->name('admin.send');
 
 Route::get('/home', function () {
@@ -112,7 +130,7 @@ Route::get('/home', function () {
         return redirect()->route('dashboard')->with('status', session('status'));
     }
 
-    return redirect()->route('dashboard');
+    
 });
 
 // // for users

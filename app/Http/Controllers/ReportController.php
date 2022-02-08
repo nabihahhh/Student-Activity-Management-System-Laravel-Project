@@ -165,6 +165,7 @@ class ReportController extends Controller
     {
         $validatedData = $request->validate([
             'file_path' => 'nullable:Reports,$id',
+            'fileName' => 'nullable:Reports,$id',
             
         ]);
         if(empty($request->session()->get('Report'))){

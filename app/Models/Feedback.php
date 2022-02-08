@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
-class Status extends Model
+class Feedback extends Model
 {
     use SoftDeletes;
 
-    public $table = 'statuses';
+    public $table = 'feedbacks';
 
     protected $dates = [
         'created_at',
@@ -19,7 +19,9 @@ class Status extends Model
     ];
 
     protected $fillable = [
-        'name',
+        'proposal_id',
+        'user_id',
+        'feedback_text',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -30,8 +32,13 @@ class Status extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function status()
+    public function proposal()
     {
-        return $this->belongsTo(Status::class, 'status_id');
+        return $this->belongsTo(Proposal::class, 'proposal_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

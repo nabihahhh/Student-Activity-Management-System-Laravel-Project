@@ -19,12 +19,12 @@
                 </div> 
             </div>
 
- <div class="container p-4 max-w-screen-lg mx-auto pb-10 flex justify-center bg-gray-100" style=" "> <!--another box layering below form box -->
+ <div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center " style=" "> <!--another box layering below form box -->
     <!-- <div class="p-4 rounded-md text-left flex-auto  " style="max-width: max-content ">
     <img class="object-scale-down h-48 w-full"  src="https://ih1.redbubble.net/image.1066412296.0216/fposter,small,wall_texture,product,750x1000.u1.jpg">
     </div> -->
 
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen" style=" ">
+    <div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4" style=" ">
        
 
             <div class="card-body text-rose-600 ">
@@ -46,7 +46,7 @@
 
 
                     <div class="flex -mr-px ">
-				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
                                 FINANCIAL REQUIREMENT
                             </span>
 			            </div>
@@ -54,7 +54,7 @@
 
                         <div style="width: 700px;">
                             <span style="width:80%" class="pr-3 text-gray-700 text-base font-bold">Balance of budget available: </span>
-                            <input style="width: 20%;" class=" h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border-gray-300 rounded focus:shadow-outline" type="text" placeholder="RM"/>
+                            <input style="width: 20%;" class=" h-8 px-2 text-sm text-gray-700 placeholder-gray-600 border-gray-300 rounded focus:shadow-outline" type="text" placeholder="RM"value="{{ session()->get('proposal.balanceBudget)') }}">
                         </div><br>
 
                         <span class="text-gray-700 text-base font-bold">Budget requested from:- </span><br><br>
@@ -104,7 +104,7 @@
                         </div><br><br>
 
                          <div class="flex -mr-px ">
-				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
                                 RECOMMENDATION
                             </span>
 			            </div>
@@ -114,8 +114,11 @@
                             <span style=" " class="text-gray-700 text-sm font-bold">i. ADVISOR/COORDINATOR FELLOW (MAHALLAH)</span>
                             <select style=" " id="approvalCommittee_id" name="approvalCommittee_id" value="{{ session()->get('proposal.approvalCommittee_id)') }}" class="mt-1 block w-3/6 rounded">
 
-                                <option>1</option>
-                                <option>2</option>
+                                <option value="1" >Dr. Adam bin Ali (Fellow Mahallah Ali)</option>
+                                <option value="9">Dr. Suriani Sulaiman (Fellow Mahallah Aminah)</option>
+                                <option value="1" >Dr. Adam bin Ali (Fellow Mahallah Bilal)</option>
+                                <option  value="11" >Dr. Nurul Fasihah (Fellow Mahallah Hafsah)</option>
+                                <option value="12" >Asst. Prof. Dr. Izzuddin (Fellow Mahallah Zubair)</option>
                                 <!-- <option>Van</option>
                                 <option>Lorry</option>
                                 <option>4WD</option>
@@ -126,8 +129,11 @@
                         <div style=" "> 
                             <span style=" " class="text-gray-700 text-sm font-bold">ii. OFFICER-IN-CHARGE (K/C/D/I/O/M)/ ASSISTANT DIRECTOR (for joint/collaboration programme, signature of the main organiser is required in the Joint Programme Form)</span>
                             <select style=" " id="approvalCommitteeName2" name="approvalCommitteeName2" value="{{ session()->get('proposal.approvalCommitteeName2)') }}" class="mt-1 block w-3/6 rounded">
-                                <option>Adam Bin Ali</option>
-                                <option>syifa</option>
+                                <option value="13" >Asst. Prof. Dr. Hayati</option>
+                                <option value="9" >Dr. Suriani Sulaiman</option>
+                                <option value="1" >Dr. Adam bin Ali</option>
+                                <option value="11" >Dr. Nurul Fasihah</option>
+                                <option value="12" >Asst. Prof. Dr. Izzuddin</option>
                                 <!-- <option>Van</option>
                                 <option>Lorry</option>
                                 <option>4WD</option>
@@ -138,9 +144,9 @@
                         <div style=" "> 
                             <span style=" " class="text-gray-700 text-sm font-bold">iii. HEAD OF DEPARTMENT/DEPUTY DIRECTOR/DEPUTY DEAN/PRINCIPAL</span>
                             <select style=" " id="approvalCommitteeName3" name="approvalCommitteeName3" value="{{ session()->get('proposal.approvalCommitteeName3)') }}" class="mt-1 block w-3/6 rounded">
-                                <option>Adam Bin Ali</option>
-                                <option>syifa</option>
-                                <option>mai</option>
+                            <option value="15" >Prof. Dr. Ahmad (Deputy Dean - KICT)</option>
+                                <option value="14" >Asst. Prof. Dr. Hazwan (Deputy Dean - KOE)</option>
+                                <option value="16" >Assoc. Prof. Dr. Suhailah (Deputy Dean - Academic and Industrial Linkages)</option>
                                 <!-- <option>Van</option>
                                 <option>Lorry</option>
                                 <option>4WD</option>
@@ -151,9 +157,9 @@
                         <div style=" "> 
                             <span style=" " class="text-gray-700 text-sm font-bold">iv. DEAN/DIRECTOR</span>
                             <select style=" " id="approvalCommitteeName4" name="approvalCommitteeName4" value="{{ session()->get('proposal.approvalCommitteeName4)') }}" class="mt-1 block w-3/6 rounded">
-                                <option>Adam Bin Ali</option>
-                                <option>syifa</option>
-                                <option>nabihah</option>
+                                <option value="15" >Prof. Dr. Ahmad (Dean - KICT)</option>
+                                <option value="14" >Asst. Prof. Dr. Hazwan (Dean - KOE)</option>
+                                <option value="16" >Assoc. Prof. Dr. Suhailah (Dean - Academic and Industrial Linkages)</option>
                                 <!-- <option>Van</option>
                                 <option>Lorry</option>
                                 <option>4WD</option>
@@ -178,12 +184,7 @@
                         <br> -->
 
                         <br><br>
-                    <div class="p-2 flex space-x-96">
-                            <div class="flex justify-start">
-                                <a type="button" href="{{ route('proposal.create.step.4') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
-                                    Back
-                                </a>
-                            </div>
+                  
 
                             <div class="flex justify-end space-x-4">
                                 <button type="submit" class="btn btn-primary bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -195,6 +196,12 @@
                                 <button type="submit" class="btn btn-primary bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ">
                                     Submit
                                 </button>
+                            </div>
+                            <div class="p-2 flex space-x-96">
+                            <div class="flex justify-start">
+                                <a type="button" href="{{ route('proposal.create.step.4') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
+                                    Back
+                                </a>
                             </div>
                         </div>
 

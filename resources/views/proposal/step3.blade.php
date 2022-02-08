@@ -15,12 +15,12 @@
                 </div> 
             </div>
 
- <div class="container p-4 max-w-screen-lg mx-auto pb-10 flex justify-center bg-gray-100" style=" "> <!--another box layering below form box -->
+ <div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center " style=" "> <!--another box layering below form box -->
     <!-- <div class="p-4 rounded-md text-left flex-auto  " style="max-width: max-content ">
     <img class="object-scale-down h-48 w-full"  src="https://ih1.redbubble.net/image.1066412296.0216/fposter,small,wall_texture,product,750x1000.u1.jpg">
     </div> -->
 
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen" style=" ">
+    <div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4" style=" ">
        
 
             <div class="card-body text-rose-600 ">
@@ -42,7 +42,7 @@
 
                     
                     <div class="flex -mr-px ">
-				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
                                 PROGRAMME VALUES
                             </span>
 			            </div>
@@ -157,12 +157,7 @@
                         </label>
                         <br><br>
 
-                    <div class="p-2 flex space-x-96">
-                            <div class="flex justify-start">
-                                <a type="button" href="{{ route('proposal.create.step.2') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
-                                    Back
-                                </a>
-                            </div>
+                  
 
                             <div class="flex justify-end space-x-4">
                                 <button type="submit" class="btn btn-primary bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -174,6 +169,12 @@
                                 <button type="submit" class="btn btn-primary bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ">
                                     Next
                                 </button>
+                            </div>
+                            <div class="p-2 flex space-x-96">
+                            <div class="flex justify-start">
+                                <a type="button" href="{{ route('proposal.create.step.2') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
+                                    Back
+                                </a>
                             </div>
                         </div>
 

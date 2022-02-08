@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="shadow-lg bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-2/4 mx-2">
+        <!-- <div class="shadow-lg bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-2/4 mx-2">
             <div class="p-4 flex flex-col">
                 <a href="{{ route('signup') }}" class="no-underline text-gray-700 text-2xl">
                     Create
@@ -64,7 +64,7 @@
                     Financial Report 
                 </a>
             </div>
-        </div>
+        </div> -->
     
             </div>
         </div>
@@ -75,9 +75,16 @@
   <div class="min-w-screen min-h-screen bg-gray-100 flex-auto justify-center bg-gray-100 font-sans overflow-hidden">
 
     <table class="table-fixed border-collapse border-white leading-relaxed  py-3 px-6 whitespace-nowrap text-gray-600 text-xl mt-4 font-extralight w-full">
-      <tr>
+    <tr>   
+      <th>&nbsp;</th>
         
-        <th class=" text-gray-600 text-start">&emsp;&emsp;Progress Submitted Forms</th>
+        <th class="bg-green-700 text-white text-center shadow-md rounded-md text-sm">PROGRESS SUBMITTED FORMS - PROGRAMME PROPOSAL FORM (PPF)</th>
+        
+      </tr>
+      <tr>
+      <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
       <tr>
         <th>&nbsp;</th>
@@ -106,19 +113,58 @@
                   <td class="py-3 px-6 text-center whitespace-nowrap">{{ $proposal->programmeOrganizer ?? '' }}</td>
                   <td class="py-3 px-6 text-center whitespace-nowrap">
                   
-                  <span class="">
-                        {{ $user->is_user && $proposal->status_id < 14 ? $defaultStatus->name : $proposal->status->name}}
-                    </span>
+                  <!-- <span class=""> -->
+                        <!-- {{ $user->is_user && $proposal->status_id < 14 ? $defaultStatus->name : $proposal->status_id}} -->
+                        @if ($proposal->status_id == 1)
+                            <span>Pending approvals</span>
+                        @elseif ($proposal->status_id == 2)
+                            <span>Approver 1 processing</span>
+                        @elseif ($proposal->status_id == 3)
+                            <span>Approver 1 accepted</span>
+                        @elseif ($proposal->status_id == 4)
+                            <span>Approver 1 rejected</span>
+
+                        @elseif ($proposal->status_id == 5)
+                            <span>Approver 2 processing</span>
+                        @elseif ($proposal->status_id == 6)
+                            <span>Approver 2 accepted</span>
+                        @elseif ($proposal->status_id == 7)
+                            <span>Approver 2 rejected</span>
+
+                        @elseif ($proposal->status_id == 8)
+                            <span>Approver 3 processing</span>
+                        @elseif ($proposal->status_id == 9)
+                            <span>Approver 3 accepted</span>
+                        @elseif ($proposal->status_id == 10)
+                            <span>Approver 3 rejected</span>
+                        
+                        @elseif ($proposal->status_id == 11)
+                            <span>Approver 4 processing</span>
+                        @elseif ($proposal->status_id == 12)
+                            <span>Approver 4 accepted</span>
+                        @elseif ($proposal->status_id == 13)
+                            <span>Approver 4 rejected</span>
+                        
+                        @elseif ($proposal->status_id == 14)
+                            <span>Accepted</span>
+                        @elseif ($proposal->status_id == 15)
+                            <span>Rejected</span>
+                        @endif
+                    <!-- </span> -->
                 
                   </td>
-                  <td class="py-3 px-6 text-center whitespace-nowrap">
+                  <td class="py-3 px-3 text-center whitespace-nowrap">
+                  @if(($proposal->status_id == 14))
+                                    <a class="btn btn-xs btn-success bg-blue-400 text-white py-0.3 px-1 rounded-full text-xs" href="{{ route('signup') }}">
+                                        Create Programme Report Form (PRF)
+                                    </a>
+                    @endif
+                  
                     <div class="flex item-center justify-center">
-                      <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                        <a href="/showVerifyDetails/{{$proposal['id']}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg></a>
+                      <!-- <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"> -->
+                      <a class="btn btn-xs btn-primary bg-green-200 text-green-600 py-0.3 px-2 rounded-full text-xs" href="{{ route('show.Verify.Details', $proposal->id) }}">
+                                        {{ trans('View') }} 
+                                    </a>
                       </div>
                     </div>
                   </td>

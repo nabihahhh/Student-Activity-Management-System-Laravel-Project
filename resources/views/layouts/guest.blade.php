@@ -15,9 +15,14 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
+    <body  class="flex justify-between">
+      <div   class="bg-cover bg-center bg-no-repeat bg-fixed flex flex-col items-center " style="background-image: url('https://news.iium.edu.my/wp-content/uploads/2016/05/uia.jpg')">
+      <img src="https://news.iium.edu.my/wp-content/uploads/2016/05/uia.jpg" alt="..." class="shadow rounded w-screen h-screen align-middle border-none" />
+    </div>
+        <div class="font-sans text-gray-900 antialiased w-2/4">
             {{ $slot }}
         </div>
     </body>

@@ -24,7 +24,7 @@
             <!-- Page Heading -->
             <header class="bg-green-700 text-white text-left shadow-md font-bold">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;@yield('header')
+                @yield('header')
                 </div>
             </header>
 
