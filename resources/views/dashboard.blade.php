@@ -162,7 +162,7 @@
                   
                     <div class="flex item-center justify-center">
                       <!-- <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"> -->
-                      <a class="btn btn-xs btn-primary bg-green-200 text-green-600 py-0.3 px-2 rounded-full text-xs" href="{{ route('show.Verify.Details', $report->id) }}">
+                      <a class="btn btn-xs btn-primary bg-green-200 text-green-600 py-0.3 px-2 rounded-full text-xs" href="{{ route('show.Verify.Details2', $report->id) }}">
                                         {{ trans('View') }} 
                                     </a>
                       </div>

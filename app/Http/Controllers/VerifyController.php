@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Verify;
 use App\Models\Proposal;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use DB;
 
@@ -124,6 +125,13 @@ class VerifyController extends Controller
 
         $proposal = Proposal::findOrFail($id);
         return view('verify.showVerifyDetails', compact('proposal','id'));
+    }
+
+    public function showVerifyDetails2($id)
+    {
+
+        $report = Report::findOrFail($id);
+        return view('verify.showVerifyDetails2', compact('report','id'));
     }
 
     /**

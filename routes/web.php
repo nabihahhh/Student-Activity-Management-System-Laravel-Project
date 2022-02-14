@@ -46,6 +46,7 @@ Route::get('/data', [ReportController::class,'index'])->name('index');
 
 
     Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
+    Route::get('/showVerifyDetails2/{id}','VerifyController@showVerifyDetails2')->name('show.Verify.Details2'); 
     Route::get('proposal/{proposal}/showAnalyze', 'DashboardController@showAnalyze')->name('admin.proposal.showAnalyze');
     Route::post('proposal/{proposal}/analyze', 'DashboardController@analyze')->name('admin.proposal.analyze');
 
@@ -79,28 +80,29 @@ Route::group(['middleware' => ['auth', 'role:approvalCommittee']], function() {
     //add download approval letter button
     // Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
 
-    //approval committee view: list of programme proposal need to be verify
-    Route::get('/list-PPF-required-verification', 'ProposalController@searchKeyboard')->name('list.PPF.Verify'); 
+   
 });
+ //approval committee view: show details of selected PPF from (list of programme proposal need to be verify)
+ Route::get('/showStatus/{id}','VerifyController@verifyFormCreate')->name('verify.Form.Create'); 
+
+ //approval committee view: after submit feedback and action of selected PPF from (list of programme proposal need to be verify)
+ Route::post('/postStatus/{id}','VerifyController@verifyFormPost')->name('verify.Form.Post'); 
+
+ //approval committee view: History list of PPF that has been verify by user (with status)
+ //organizer view: History list of PPF that has been submitted (with status) //route: organizer dashboard view 
+ Route::get('/showListStatus','VerifyController@verifyList')->name('show.List.Status'); 
+
+ //approval committee view: PPF details from (History list of PPF that has been verify by user)
+ //organizer view:  PPF details from (PPF list that has been submitted (with status)) //route: organizer dashboard view 
+ //add download approval letter button
+ // Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
+ //approval committee view: list of programme proposal need to be verify
+ Route::get('/list-PPF-required-verification', 'ProposalController@searchKeyboard')->name('list.PPF.Verify'); 
 
 Route::group(['middleware' => ['auth', 'role:staddAdmin']], function() { 
-    //approval committee view: show details of selected PPF from (list of programme proposal need to be verify)
-    Route::get('/showStatus/{id}','VerifyController@verifyFormCreate')->name('verify.Form.Create'); 
+   
 
-    //approval committee view: after submit feedback and action of selected PPF from (list of programme proposal need to be verify)
-    Route::post('/postStatus/{id}','VerifyController@verifyFormPost')->name('verify.Form.Post'); 
-
-    //approval committee view: History list of PPF that has been verify by user (with status)
-    //organizer view: History list of PPF that has been submitted (with status) //route: organizer dashboard view 
-    Route::get('/showListStatus','VerifyController@verifyList')->name('show.List.Status'); 
-
-    //approval committee view: PPF details from (History list of PPF that has been verify by user)
-    //organizer view:  PPF details from (PPF list that has been submitted (with status)) //route: organizer dashboard view 
-    //add download approval letter button
-    // Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
-
-    //approval committee view: list of programme proposal need to be verify
-    Route::get('/list-PPF-required-verification', 'ProposalController@searchKeyboard')->name('list.PPF.Verify'); 
+    
 });
 
 // Route::get('/', function () {

@@ -30,10 +30,10 @@
     </div>
 
 
-<div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto" style="max-width: max-content object-position: right">
-    <div class="flex flex-col">
+<!-- <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto" style="max-width: max-content object-position: right">
+    <div class="flex flex-col"> -->
     <!-- Stats Row Starts Here -->
-    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+    <!-- <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
         <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-2/4 mx-2">
             <div class="p-4 flex flex-col ">
                 <a href="{{ route('list.PPF.Verify') }}" class="no-underline text-gray-700 text-2xl">
@@ -43,7 +43,7 @@
                     Programme Proposal
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <!-- <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-2/4 mx-2">
             <div class="p-4 flex flex-col ">
@@ -60,9 +60,9 @@
        
 
 
-    
+<!--     
             </div>
-        </div>
+        </div> -->
 
         <br>
         <!-- <h1 class="text-gray-600 text-base leading-normal">List of Proposal with The Verification</h1><br/> -->
