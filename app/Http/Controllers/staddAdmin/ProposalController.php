@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\staddAdmin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\Status;
 use App\Models\Role;
 use App\Models\File;
-
+use App\Http\Requests\UpdateProposalRequest;
 
 class ProposalController extends Controller
 {
@@ -417,6 +417,44 @@ public function fetch_date(Request $request)
       ->get();
 
       return view('verify.showProposalTable', ['proposal' => $proposal]);
+    }
+
+    public function edit(Proposal $proposal)
+    {
+        // abort_if(
+        //     // Gate::denies('loan_application_edit') || !in_array($proposal->status_id, [6,7]),
+        //     Response::HTTP_FORBIDDEN,
+        //     '403 Forbidden'
+        // );
+
+        $statuses = Status::whereIn('id', [1, 2,3,4,5,6,7,8, 9,10,11,12,13,14,15])->pluck('name', 'id');
+
+        $proposal->load('status');
+
+        return view('admin.proposal.edit', compact('statuses', 'proposal'));
+    }
+
+    public function update(UpdateProposalRequest $request, Proposal $proposal)
+    {
+        $proposal->update($request->only('programmeName', 'programmeOrganizer', 'status_id'));
+
+        return redirect()->route('dashboard');
+    }
+
+    public function destroy(Proposal $proposal)
+    {
+        // abort_if(Gate::denies('loan_application_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $proposal->delete();
+
+        return back();
+    }
+
+    public function massDestroy(MassDestroyProposalRequest $request)
+    {
+        Proposal::whereIn('id', request('ids'))->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 
 }

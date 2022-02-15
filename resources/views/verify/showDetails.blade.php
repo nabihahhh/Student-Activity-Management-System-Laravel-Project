@@ -8,7 +8,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-10">
-                    @section('header', 'PROGRAMME PROPOSAL FORM (PPF) - VERIFY')<br>
+                    @section('header', 'PROGRAMME PROPOSAL FORM (PPF) - VIEW DETAILS')<br>
                     </div>
                     <div class="col-md-2">
                         <a href="{{ route('index') }}" class="btn btn-md btn-success float-right"><i class="fas fa-arrow-left"></i></a>
@@ -16,400 +16,445 @@
                 </div> 
             </div>
             
-            <div class="container p-4 max-w-screen-lg mx-auto pb-10 flex justify-center bg-gray-100" style=" "> <!--another box layering below form box -->
-    <!-- <div class="p-4 rounded-md text-left flex-auto  " style="max-width: max-content ">
-    <img class="object-scale-down h-48 w-full"  src="https://ih1.redbubble.net/image.1066412296.0216/fposter,small,wall_texture,product,750x1000.u1.jpg">
-    </div> -->
+            <div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center  " >
 
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen" style=" ">
-        
-  <div class="card-body">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+<div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4" style=" ">
+            <form action="{{ route('store1') }}" method="post" enctype="multipart/form-data" class="w-max" >
+                {{ csrf_field() }}
+                
+                <tr ><div class="flex -mr-px ">
+                        <td ><span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                            PROGRAMME DETAILS
+                        </span>  </td>
+                        </div>
+                    </tr>
+                    <br>
+                
+                    <tr>
+                        <td><strong>Programme Name:</strong></td>
+                        <td>{{$Proposal->programmeName}}</td>
+                    </tr><br>
 
-      <form action="{{ route('verify.Form.Post', $Proposal->id)}}" method="POST">
-        @csrf
-        
-  <!-- <div class="container p-4 shadow-md rounded-md text-left bg-gray-100" style="max-width: 83.333333%">
-    <div class="p-4 shadow-md rounded-md text-left items-top bg-gray-50 flex-auto" style="max-width: max-content object-position: right"> -->
-      <table class="table-fixed border-collapse border-white leading-relaxed text-left py-3 px-6 whitespace-nowrap text-gray-600 text-sm font-light w-full">
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md">PROGRAMME INFORMATION</th>
-        </tr>
-        <tr>
-          <th>Programme Name </th>
-          <td>{{$Proposal['programmeName']}}</td>
-        </tr>
-        <tr>
-          <th>Programme Organizer </th>
-          <td>{{$Proposal['programmeOrganizer']}}</td>
-        </tr>
-        <tr>
-          <th>Programme Venue </th>
-          <td>{{$Proposal['venue']}}</td>
-        </tr>
-        <tr>
-          <th>Programme Date </th>
-          <td>{{$Proposal['startDate']}} <b>
-            <!-- to</b> {{$Proposal['endDate']}}</td> -->
-        </tr>
+                    <tr>
+                        <td><strong>Organizer:</strong></td>
+                        <td>{{$Proposal->programmeOrganizer}}</td>
+                    </tr><br>
+                    <tr>
+                        <td><strong>Venue:</strong></td>
+                        <td>{{$Proposal->venue}}</td>
+                    </tr><br>
+                    
+                    <tr>
+                        <td><strong>Date:</strong></td>
+                        <td>{{$Proposal->date}}</td>
+                    </tr><br><br>
+                    
+                    <tr>
+                        
+                        <td><strong>Expected Number of Participant(s)</strong></td>
+                    </tr><br>
+                    <tr>
+                        <td>Local Participant :</td>
+                        <td><strong>{{$Proposal->localParticipant }}</strong></td>
+                    </tr><br>
+                    <tr>
+                        <td>International Participant :</td>
+                        <td><strong>{{$Proposal->InternationalParticipant }}</strong></td>
+                    </tr><br><br>
 
-        <tr>  
-          <tr>
-          <th>Types of Programme </th>
-          <td>
-          @if ( $Proposal->studentDrivenProgramme )
-              <span style="">Student Driven Programme</span>
-              @else 
-              <span style="color:red"> </span>
-              @endif 
-          </td>
-        </tr>
+                    <tr>
+                        <td><strong>Collaborations:</strong></td>
+                        <td>{{$Proposal->collaborations}}</td>
+                    </tr><br><br>
+                    <tr>
+                    <div class="flex -mr-px ">
+                    <td><span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           TYPES OF PROGRAMME
+                        </span> </td></div><br>
+                    
+                       
+                        <td>
+                            @if ($Proposal->studentDrivenProgramme == 1)
+                                <p>Student Driven Programme</p>  
+                            @endif
+                            @if ($Proposal->departmentDrivenProgramme == 1)
+                                <p>Department Driven Programme</p>
+                                @endif
+                            @if ($Proposal->invitationalProgramme == 1)
+                                <p>Invitational Programme</p>  
+                                @endif
+                            @if ($Proposal->jointProgramme == 1)
+                                <p>Joint Programme</p> 
+                                @endif
+                            @if ($Proposal->creditedProgramme  == 1)
+                                <p>Credited Programme</p> 
+                                @endif
+                            
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->departmentDrivenProgramme )
-              <span style="">Department Driven Programme</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                            <strong>{{$Proposal->othersProgramme}}</strong>
+                        </td>
+                    </tr><br>
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           KULL./DEPT./UNIT IN-CHARGE
+                        </span></div> <br>
+                    
+                        <td><p>{{$Proposal->kullDeptUnitInCharge}}</p></td>
+                    </tr><br>
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           SOCIETY/CLUB/ASSOCIATION
+                        </span></div> <br>
+                        <td><p>{{$Proposal->societyClubAssociation }}</p></td>
+                    </tr><br>
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           TYPE OF ACTIVITY
+                        </span></div><br>
+                        <td>
+                            @if ($Proposal->participationActivity == 1)
+                                <p>Participation Activity</p>  
+                                @endif
+                            @if ($Proposal->competitionActivity  == 1)
+                                <p>Competition Activity </p>  
+                                @endif
+                        </td>
+                        </tr><br>
+                        <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           LEVEL OF ACTIVITY 
+                        </span></div> <br>
+                        <td>
+                            @if ($Proposal-> universityLevel  == 1)
+                                <p>University Level </p>  
+                                @endif
+                            @if ($Proposal->nationalLevel   == 1)
+                                <p>National Activity </p>  @endif
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->invitationalProgramme)
-              <span style="">Invitational Programme</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                            @if ($Proposal->InternationalLevel == 1)
+                                <p>International Level</p> @endif
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->jointProgramme )
-              <span style="">Joint Programme</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                            @if ($Proposal->societyDepartmentLevel == 1)
+                                <p>Society/Department Level</p> @endif
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->creditedProgramme)
-              <span style="">Credited Programme</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                            @if ($Proposal->compulsoryProgrammeLevel == 1)
+                                <p>Compulsory Programme Level</p> 
+                            @endif
+                        </td>
+                    </tr><br><br>
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           VARIATION OF ACTIVITY 
+                        </span></div><br>
+                        <td>
+                            @if ($Proposal-> attendingCeremonyActivity  == 1)
+                                <p>Attending Ceremony </p>  @endif
+                            @if ($Proposal->bullettinNewsletterActivity   == 1)
+                                <p>Bulletin/Newsletter </p> @endif 
+                            @if ($Proposal->communityServiceActivity == 1)
+                                <p>Community Service</p> @endif
+                            @if ($Proposal->counselingActivity == 1)
+                                <p>Counseling</p> @endif
+                            @if ($Proposal->promotionBoothActivity == 1)
+                                <p>Promotion/Booth</p> @endif
 
-        <tr>
-          <th> </th>
-          <td>{{$Proposal['othersProgramme']}}</td>
-        </tr>
-       
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md">PARTICIPATION</th>
-        </tr>
-        <tr>
-          <th>Collaborations </th>
-          <td>{{$Proposal['collaborations']}}</td>
-        </tr>
-        <tr>
-          <th>Kull./Dept./Unit In Charge </th>
-          <td>{{$Proposal['kullDeptUnitInCharge']}}</td>
-        </tr>
-        <tr>
-          <th>Society/Club/Association </th>
-          <td>{{$Proposal['societyClubAssociation']}}</td>
-        </tr>
-        <tr>  
-          <tr>
+                            @if ($Proposal-> culturalActivity == 1)
+                                <p>Cultural </p>  @endif
+                            @if ($Proposal->debateActivity   == 1)
+                                <p>Debate </p>  @endif
+                            @if ($Proposal->educationalTripActivity == 1)
+                                <p>Educational Trip</p> @endif
+                            @if ($Proposal->entrepreneurshipActivity == 1)
+                                <p>Entrepreneurship</p> @endif
+                            @if ($Proposal->annualGrandMeetingActivity == 1)
+                                <p>Annual Grand Meeting</p> @endif
 
-          <th>Types of Activity </th>
-          <td>
-          @if ( $Proposal->participationActivity )
-              <td style="">Participation Activity</td>
-              @else 
-              <td style="color:red"></td>
-              @endif 
-          </td>
-        </tr>
+                            @if ($Proposal-> intellectualActivity  == 1)
+                                <p>Intellectual </p>  @endif
+                            @if ($Proposal->leadershipActivity   == 1)
+                                <p>Leadership </p>  @endif
+                            @if ($Proposal->recreationalActivity == 1)
+                                <p>Recreational</p> @endif
+                            @if ($Proposal->socialGatheringActivity == 1)
+                                <p>Social Gathering</p>@endif
+                            @if ($Proposal->seminarConferenceActivity == 1)
+                                <p>Seminar Conference</p> @endif
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->competitionActivity)
-              <span style="">Competition Activity</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                            @if ($Proposal->spiritualActivity   == 1)
+                                <p>Spiritual </p>  @endif
+                            @if ($Proposal->sportActivity == 1)
+                                <p>Sports</p> @endif
+                            @if ($Proposal->trainingActivity == 1)
+                                <p>Training</p> @endif
+                            @if ($Proposal->uniformBodiesActivity == 1)
+                                <p>Uniform Bodies</p> 
+                            @endif
+                        </td>
+                    </tr><br>
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           SDG GOALS
+                        </span></div><br>
+                    @if ($Proposal->sdgGoal1 == 1) 
+                        <td><p>No Poverty</p></td>
+                     @endif
+                    </tr>
+                    
+                    @if ($Proposal->sdgGoal2 == 1)
+                    <tr>
+                        
+                        <td><p>Zero Hunger</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal3 == 1)
+                    <tr>
+                        
+                        <td><p>Good Health & Wellbeing</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal4 == 1)
+                    <tr>
+                       
+                        <td><p>Quality Education</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal5 == 1)
+                    <tr>
+                        
+                        <td><p>Gender Equality</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal6 == 1)
+                    <tr>
+                        
+                        <td><p>Clean Water & Sanitation</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal7 == 1)
+                    <tr>
+                       
+                        <td><p>Affordable & Clean Energy</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal8 == 1)
+                    <tr>
+                        
+                        <td><p>Decent Work & Economic Growth</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal9 == 1)
+                    <tr>
+                        
+                        <td><p>Industry, Innovation & Infrastructure</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal10 == 1)
+                    <tr>
+                        
+                        <td><p> Reduce</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal11 == 1)
+                    <tr>
+                        
+                        <td><p>Sustainable Cities & Communities</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal12 == 1)
+                    <tr>
+                       
+                        <td><p>Responsible Consumption & Production</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal13 == 1)
+                    <tr>
+                       
+                        <td><p>Climate Action</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal14 == 1)
+                    <tr>
+                       
+                        <td><p> Life Below Water</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal15 == 1)
+                    <tr>
+                       
+                        <td><p>Life on Land</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal16 == 1)
+                    <tr>
+                       
+                        <td><p>Peace, Justice & p Instituations</p></td>
+                    </tr>
+                    @endif
+                    @if ($Proposal->sdgGoal17 == 1)
+                    <tr>
+                        
+                        <td><p>Partnership for the goals</p></td>
+                    </tr> 
+                    @endif
+                    <br>
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           MAQASID SHARIAH
+                        </span></div><br>
+                        <td>
+                            @if ($Proposal-> maqasidShariahFaith  == 1)
+                                <p>Faith </p>  @endif
+                            @if ($Proposal->maqasidShariahLife   == 1)
+                                <p>Life</p> @endif 
+                            @if ($Proposal->maqasidShariahIntellect  == 1)
+                                <p>Intellect</p> @endif
+                            @if ($Proposal->maqasidShariahWealth == 1)
+                                <p>Wealth</p> 
+                            @endif
+                        </td>
+                    </tr><br>
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           MISSION OF IIUM 
+                        </span></div><br>
+                        <td>
+                            @if ($Proposal->missionOfIiumIslamization  == 1)
+                                <p>Islamization</p>@endif  
+                            @if ($Proposal->missionOfIiumInternationalization   == 1)
+                                <p>Internationalization</p>  @endif
+                            @if ($Proposal->missionOfIiumIntegration  == 1)
+                                <p>Integration</p> 
+                            @endif
+                        </td>
+                    </tr><br><br>
 
-        <tr>  
-          <tr>
-          <th>Level of Activity </th>
-          <td>
-          @if ( $Proposal->universityLevel)
-              <span style="">University Level</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                    
+                    <div class="flex -mr-px ">
+                    <tr>
+                        <td><span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           STUDENT-IN-CHARGE
+                        </span> </div></td><br>
+                    
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->nationalLevel)
-              <span style="">National Level</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                    <td><strong>Programme Manager</strong></td><br>
+                    <td>Name:</td>
+                        <td>{{$Proposal->programmeManagerName}}</td><br>
+                    <td>Matric no:</td>
+                        <td>{{$Proposal-> programmeManagerMatricNo }}</td><br>
+                    <td>Phone no:</td>
+                        <td>{{$Proposal->programmeManagerPhoneNo}}</td>
+                    </tr><br><br>
+                    <tr>
+                    <td><strong>Programme Secretary</strong></td><br>
+                    <td>Name:</td>
+                        <td>{{$Proposal->programmeSecretaryName}}</td><br>
+                    <td>Matric no:</td>
+                        <td>{{$Proposal-> programmeSecretaryMatricNo }}</td><br>
+                    <td>Phone no:</td>
+                        <td>{{$Proposal->programmeSecretaryPhoneNo}}</td><br><br>
+                   
+                        </tr><tr>
+                    <td><strong>Programme Treasurer</strong></td><br>
+                    <td>Name:</td>
+                        <td>{{$Proposal->programmeTreasurerName}}</td><br>
+                    <td>Matric no:</td>
+                        <td>{{$Proposal-> programmeTreasurerMatricNo }}</td><br>
+                    <td>Phone no:</td>
+                        <td>{{$Proposal->programmeTreasurerPhoneNo}}</td>
+                        </tr><tr><br><br>
+                    <td><strong>Pesident of Association/Club/Society</strong></td><br>
+                    <td>Name:</td>
+                        <td>{{$Proposal->presidentClubSocietyName}}</td><br>
+                    <td>Matric no:</td>
+                        <td>{{$Proposal-> presidentClubSocietyMatricNo }}</td><br>
+                    <td>Phone no:</td>
+                        <td>{{$Proposal->presidentClubSocietyPhoneNo}}</td>
+                        </tr><tr><br><br>
+                        
+                        <div class="flex -mr-px ">
+                        <td><span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           UNDERTAKING
+                        </span></div> </td><br>
+                        <td>
+                            <p>I hereby certify that the above information given are true and correct as to the best of my knowledge.  </p> 
+                            
+                            
+                            <p>{{$Proposal->programmeManagerName}},</p>
+                            <p><strong>Programme Manager</strong></p> 
+                            <p><strong>{{$Proposal->date}}</strong></p> 
+                        </td>
+                    </tr><br>
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->InternationalLevel)
-              <span style="">International Level</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                    
+                    <div class="flex -mr-px ">
+                    <tr>
+                    <td><span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           FINANCIAL REQUIREMENT
+                        </span></div> </td><br>
+                        <td><strong> Balance of Budget Available: </td></strong>
+                        <td>{{$Proposal->balanceBudget }}</td><br><br>
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->societyDepartmentLevel)
-              <span style="">Society/Department Level</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                        <td><strong> Budget Requested From </td></strong><br>
+                        <td>STADD/CCSC/EDC/SDC/CENSERVE/IWON/CITRA: </td>
+                        <td>{{$Proposal->budgetRequestedFromSTADDToCitra}}</td><br>
 
-        <tr>  
-          <tr>
-          <th> </th>
-          <td>
-          @if ( $Proposal->compulsoryProgrammeLevel)
-              <span style="">Compulsory Programme Level</span>
-              @else 
-              <span style="color:red"></span>
-              @endif 
-          </td>
-        </tr>
+                        <td>Mahallah: </td>
+                        <td>{{$Proposal->budgetRequestedFromMahallah}}</td><br>
+
+                        <td>Kuliyyah: </td>
+                        <td>{{$Proposal->budgetRequestedFromKuliyyah }}</td><br>
+
+                        <td>Sponsors: </td>
+                        <td>{{$Proposal->budgetRequestedFromSponsors}}</td><br><br>
+
+                    </tr>
+                    <div class="flex -mr-px ">
+                    <td><span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white rounded  shadow-md rounded-md border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                           TRANSPORTATION
+                        </span></div> </td><br>
+
+                        <td><strong> Type: </strong></td>
+                        <td>{{$Proposal->typeTransportation }}</td><br>
+
+                        <td><strong> Quantity: </td></strong>
+                        <td>{{$Proposal->quantityTransportation}}</td><br>
+
+                    </tr><br><br>
 
 
-        <tr>
-          <th>Expected Number of Participants</th>
-          <td><b>Local : </b>{{$Proposal['localParticipant']}}</td>
-          <td><b>International :</b>{{$Proposal['internationalParticipant']}}</td>
-        </tr>
-        <!-- <tr>
-          <td>&nbsp;</td>
-          <td><b>International :</b>{{$Proposal['internationalParticipant']}}</td>
-        </tr> -->
-        <tr>
-          <th>Variation of Activity </th>
-          <td>{{$Proposal['activityVariation']}}</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md">PROGRAMME VALUES</th>
-        </tr>
-        <tr>
-          <th>SDG Goals </th>
-          <td>{{$Proposal['sdgGoal']}}</td>
-        </tr>
-        <tr>
-          <th>Maqasid Shariah </th>
-          <td>{{$Proposal['maqasidShariah']}}</td>
-        </tr>
-        <tr>
-          <th>Mission of IIUM </th>
-          <td>{{$Proposal['missionOfIium']}}</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md" colspan="1">STUDENT IN CHARGE</th>
-        </tr>
-        <tr>
-          <th>Programme Manager (Name/Matric No./Phone Number)</th>
-        </tr>
-        <tr>
-          <td>{{$Proposal['PMName']}}</td>
-          <td>{{$Proposal['PMMatric']}}</td>
-          <td>{{$Proposal['PMPhone']}}</td>
-        </tr>
-        <tr>
-          <th>Programme Secretary (Name/Matric No./Phone Number)</th>
-        </tr>
-        <tr>
-          <td>{{$Proposal['SecretaryName']}}</td>
-          <td>{{$Proposal['SecretaryMatric']}}</td>
-          <td>{{$Proposal['SecretaryPhone']}}</td>
-        </tr>
-        <tr>
-          <th>Programme Treasurer (Name/Matric No./Phone Number)</th>
-        </tr>
-        <tr>
-          <td>{{$Proposal['TreasurerName']}}</td>
-          <td>{{$Proposal['TreasurerMatric']}}</td>
-          <td>{{$Proposal['TreasurerPhone']}}</td>
-        </tr>
-        <tr>
-          <th>President of Association/Club/Society (Name/Matric No./Phone Number)</th>
-        </tr>
-        <tr>
-          <td>{{$Proposal['PresidentName']}}</td>
-          <td>{{$Proposal['PresidentMatric']}}</td>
-          <td>{{$Proposal['PresidentPhone']}}</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md">FINANCIAL REQUIREMENTS</th>
-        </tr>
-        <tr>
-          <th>Balance of Budget Available</th>
-          <td>{{$Proposal['budgetBalance']}}</td>
-        </tr>
-        <tr>
-          <th>Budget Requested From</th>
-          <td><b>STADD/CCSC/EDC/SDC/</b></td>
-        </tr>
-        <tr>
-          <th>&nbsp;</th>
-          <td><b>CENSERVE/IWON/CITRA : </b>{{$Proposal['budgetReqOrg']}}</td>
-        </tr>
-        <tr>
-          <th>&nbsp;</th>
-          <td><b>Kulliyyah : </b>{{$Proposal['budgetReqKull']}}</td>
-        </tr>
-        <tr>
-          <th>&nbsp;</th>
-          <td><b>Mahallah : </b>{{$Proposal['budgetReqMahallah']}}</td>
-        </tr>
-        <tr>
-          <th>&nbsp;</th>
-          <td><b>Sponsors : </b>{{$Proposal['budgetReqSponsor']}}</td>
-        </tr>
-        <tr>
-          <th>Total Budget</th>
-          <td>{{$Proposal['totalBudget']}}</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md">TRANSPORTATION</th>
-        </tr>
-        <tr>
-          <th>Type of Transportation</th>
-          <td>{{$Proposal['transportType']}}</td>
-        </tr>
-        <tr>
-          <th>Quantity</th>
-          <td>{{$Proposal['transportQty']}}</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md">APPLICANT INFORMATION</th>
-        </tr>
-        <tr>
-          <th>Applicant's Name</th>
-          <td>{{$Proposal['applicantName']}}</td>
-        </tr>
-        <tr>
-          <th>Applicant's Matric Number</th>
-          <td>{{$Proposal['applicantMatric']}}</td>
-        </tr>
-        <tr>
-          <th>Applicant's Phone Number</th>
-          <td>{{$Proposal['applicantPhone']}}</td>
-        </tr>
-        <tr>
-          <th>Applicant's Email</th>
-          <td>{{$Proposal['applicantEmail']}}</td>
-        </tr>
-        <tr>
-          <th>Applicant's Position in Programme</th>
-          <td>{{$Proposal['applicantPosition']}}</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <th class="bg-green-700 text-white text-center shadow-md rounded-md">APPROVAL COMMITTEE</th>
-        </tr>
-        <tr>
-          <th>Society/Kulliyyah/Dept.</th>
-          <td>{{$Proposal['appCommitteeDept']}}</td>
-        </tr>
-        <tr>
-          <th>Position</th>
-          <td>{{$Proposal['appCommitteePosition']}}</td>
-        </tr>
-      </table>
-    </div><br/>
+                     
+               
 
-        <div class="mb-3 pt-0 shadow-md rounded-md">
-          <input type="text" name="verificationComment" placeholder="Enter your comments here..." autocomplete="off" class="px-3 py-4 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-base border-0 shadow outline-none focus:outline-none focus:ring w-full"/>
+               
+
+                        <!-- <div class="flex justify-end space-x-4">
+                             <a href="{{route('dashboard') }}"  class="btn btn-primary bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        Cancel
+                        </a>
+                            <button type="submit" class="btn btn-primary bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ">
+                                Submit
+                            </button>
+                        </div>
+
+                        <div class="p-2 flex space-x-96">
+                        <div class="flex justify-start">
+                            <a type="button" href="{{ route('proposal.create.step.5') }}" class="btn btn-warning bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded">
+                                Back
+                            </a>
+                        </div>
+                    </div> -->
+
+            </form>
         </div>
-        <div class="flex justify-end space-x-4">
-            <button type="submit" name="action" class="btn btn-primary bg-red-500 hover:bg-red-700 text-white text-xs font-bold py-2 px-4 rounded" value="reject">
-              Decline
-          </button>
-
-          <button type="submit" name="action" class="btn btn-primary bg-gray-400 hover:bg-gray-600 text-white text-xs font-bold py-2 px-4 rounded" value="KIV">
-            Keep In View
-        </button>
-
-          <button type="submit" name="action" class="btn btn-primary bg-green-700 hover:bg-green-900 text-white text-xs font-bold py-2 px-4 rounded" value="accept">
-              Accept
-          </button>
-
-        </div>
-      </form>
     </div>
-
-  </div>
-
+</div>
+</div>
 @endsection

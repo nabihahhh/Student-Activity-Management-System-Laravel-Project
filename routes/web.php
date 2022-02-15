@@ -5,6 +5,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\VerifyController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,8 +57,10 @@ Route::get('/data', [ReportController::class,'index'])->name('index');
 
     Route::group(['prefix' => 'staddAdmin', 'as' => 'admin.', 'namespace' => 'staddAdmin', 'middleware' => ['auth']], function () {
     Route::resource('proposal', 'ProposalController');
+    Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 });
+
 
     // Route::delete('comments/destroy', 'CommentsController@massDestroy')->name('comments.massDestroy');
     Route::resource('feedback', 'FeedbackController');
@@ -97,7 +100,9 @@ Route::group(['middleware' => ['auth', 'role:approvalCommittee']], function() {
  //add download approval letter button
  // Route::get('/showVerifyDetails/{id}','VerifyController@showVerifyDetails')->name('show.Verify.Details'); 
  //approval committee view: list of programme proposal need to be verify
- Route::get('/list-PPF-required-verification', 'ProposalController@searchKeyboard')->name('list.PPF.Verify'); 
+ Route::get('/search', 'ProposalController@searchKeyboard');
+ Route::get('/searchDate', 'ProposalController@fetch_date');
+ Route::get('/list-PPF-required-verification', 'ProposalController@showListPPF')->name('list.PPF.Verify'); 
 
 Route::group(['middleware' => ['auth', 'role:staddAdmin']], function() { 
    

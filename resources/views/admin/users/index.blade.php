@@ -64,7 +64,7 @@
               <th class="py-3 px-6 text-left">ID</th>
               <th class="py-3 px-6 text-left">NAME</th>
               <th class="py-3 px-6 text-left">EMAIL</th>
-              <th class="py-3 px-6 text-center">CLUB/ASSOCIATION/KULLIYAH/DEPARTMENT</th>
+              <th class="py-3 px-6 text-center">ROLE</th>
               <th class="py-3 px-6 text-center">ACTION</th>
           </tr>
           </thead>
@@ -85,9 +85,15 @@
                             </td>
                             
                             <td class="text-center">
-                                @foreach($user->roles as $key => $item)
-                                @if ( $item->display_name == "ApprovalCommittee")
-                                    <span class="badge badge-info "></span>
+                                @foreach($user->roles as $item)
+                                @if ( $item->name == "approvalCommittee")
+                                    <span class="badge badge-info ">Approval Committee</span>
+                                @endif
+                                @if ( $item->name == "staddAdmin")
+                                    <span class="badge badge-info ">STADD Admin</span>
+                                @endif
+                                @if ( $item->name == "organizer")
+                                    <span class="badge badge-info ">Organizer</span>
                                 @endif
                                 @endforeach
                             </td>

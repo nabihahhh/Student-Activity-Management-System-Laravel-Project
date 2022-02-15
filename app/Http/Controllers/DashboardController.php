@@ -30,7 +30,8 @@ class DashboardController extends Controller
      
        if(Auth::user()->hasRole('staddAdmin')){
          
-        $proposal = Proposal::with('status', 'approvalCommittee')->get(); 
+        $proposal = Proposal::with('status', 'approvalCommittee')
+        ->get(); 
         $report = Report::with('status')->get(); 
         $defaultStatus    = Status::find(1);
         $user             = auth()->user();
@@ -39,6 +40,10 @@ class DashboardController extends Controller
        }elseif(Auth::user()->hasRole('approvalCommittee')){
           
           $proposal = Proposal::with('status', 'approvalCommittee')
+          ->where('status_id', 'like', '2')
+          ->orWhere('status_id', 'like', '5')
+          ->orWhere('status_id', 'like', '8')
+          ->orWhere('status_id', 'like', '11')
           ->get(); 
           $defaultStatus    = Status::find(1);
           $user             = auth()->user();

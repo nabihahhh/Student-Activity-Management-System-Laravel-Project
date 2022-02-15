@@ -39,9 +39,8 @@
         </button>
         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="z-20 absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg">
           <div class="px-2 py-2 bg-gray-900 rounded-md shadow dark-mode:bg-gray-800">
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-gray-900 rounded dark-mode:bg-gray-900 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover text-white focus text-white hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:shadow-outline" href="#">Create</a>
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-gray-900 rounded dark-mode:bg-gray-900 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover text-white focus text-white hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:shadow-outline" href="#">Draft</a>
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-gray-900 rounded dark-mode:bg-gray-900 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover text-white focus text-white hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:shadow-outline" href="#">History</a>
+            <a class="block px-4 py-2 mt-2 text-sm font-semibold bg-gray-900 rounded dark-mode:bg-gray-900 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover text-white focus text-white hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:shadow-outline" href="{{ route('signup') }}">Create</a>
+
           </div>
         </div>
         @endif

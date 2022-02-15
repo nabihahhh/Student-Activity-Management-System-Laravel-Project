@@ -2,11 +2,6 @@
 
 @section('content')
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
   <style>
     .card-body{
       display: inline-block;
@@ -16,19 +11,31 @@
     }
   </style>
 
+<div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-10">
+                    @section('header', 'PROGRAMME PROPOSAL FORM (PPF) -  HISTORY')<br>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('index') }}" class="btn btn-md btn-success float-right"><i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div> 
+            </div>
 
-<div class="container p-4 max-w-screen-lg mx-auto pb-10 flex justify-center bg-gray-100" style=" "> <!--another box layering below form box -->
+
+            <div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center  " style=" "> <!--another box layering below form box -->
     <!-- <div class="p-4 rounded-md text-left flex-auto  " style="max-width: max-content ">
     <img class="object-scale-down h-48 w-full"  src="https://ih1.redbubble.net/image.1066412296.0216/fposter,small,wall_texture,product,750x1000.u1.jpg">
     </div> -->
 
-    <div class="p-4 shadow-md rounded-md text-left bg-gray-50 flex-auto w-screen" style=" ">
-       
-                  <div class="flex -mr-px ">
-				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white rounded rounded-r-none border border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
-                                LIST OF PROGRAMME PROPOSAL
-                    </span>
+    <div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4" style=" ">
+    <div class="flex -mr-px ">
+				            <span class="px-10 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                                PROGRAMME PROPOSAL FORM (PPF) 
+                            </span>
 			            </div>
+                        <br>
                   <br>
 
             <!-- Start of Search bar -->
@@ -53,49 +60,19 @@
                   </div>
             <!--End of Search bar -->
 
-            <!-- Search by category section start -->
-                  <div class="leading-8 card-body">
-                      <form action=# method="get" role="search">
-                        @csrf
-                        <div class="div_search pt-2 relative mx-auto text-gray-600">
-                          <select id="activityType" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" name="activityType">
-                            <option value="" disabled selected>Category</option>
-                            <option value="Participation">Participation</option>
-                            <option value="Competition">Competition</option>
-                          </select>
-                        </div>
-                      </form>
-                  </div>
-            <!-- Search by category section end -->
-
             <!-- Search by date section start -->
-                  <div class="leading-8 card-body">
-                      <form action="/searchDate" method="get" role="search">
-                        @csrf
-                        <div class="div_search pt-2 relative mx-auto text-gray-600">
-                          <input type="text" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" name="daterange" placeholder="Search date" autocomplete="off" class="form-control">
-                        </div>
-                      </form>
-                  </div>
-            <!-- Search by date section end -->
-
-            <!-- Search by level section start -->
             <div class="leading-8 card-body">
-                <form action=# method="get" role="search">
+                <form action="/searchDate" method="get" role="search">
                   @csrf
                   <div class="div_search pt-2 relative mx-auto text-gray-600">
-                    <select id="activityLevel" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none" name="activityLevel">
-                      <option value="" disabled selected>Activity Level</option>
-                      <option value="Participation">University</option>
-                      <option value="Competition">National</option>
-                      <option value="Competition">International</option>
-                      <option value="Competition">Society/Department</option>
-                      <option value="Competition">Compulsory</option>
-                    </select>
+                    <input type="date" class="inline-block border-2 border-gray-300 bg-white h-10 px-5 rounded-lg text-sm focus:outline-none" name="start_date">
+                    <label class="inline-block">to</label>
+                    <input type="date" class="inline-block border-2 border-gray-300 bg-white h-10 px-5 rounded-lg text-sm focus:outline-none" name="end_date">
+                    <button type="submit" class="inline-block bg-green-700 hover:bg-green-900 text-white text-xs font-bold py-2 px-4 rounded" name="search">Find</button>
                   </div>
                 </form>
-            </div>
-            <!-- Search by level section end -->
+              </div>
+            <!-- Search by date section end -->
 
     <div class="w-full">
       <div class="bg-white shadow-md rounded my-6">
@@ -105,7 +82,7 @@
               <th class="py-3 px-6 text-left">ID</th>
               <th class="py-3 px-6 text-left">Programme Name</th>
               <th class="py-3 px-6 text-center">Organized by</th>
-              <th class="py-3 px-6 text-left">Received</th>
+              <th class="py-3 px-6 text-left">Date</th>
               <th class="py-3 px-6 text-left">Action</th>
           </tr>
           </thead>
@@ -116,15 +93,18 @@
                   <td class="py-3 px-6 text-left whitespace-nowrap font-medium">{{$proposal->id}}</td>
                   <td class="py-3 px-6 text-left whitespace-nowrap font-medium">{{$proposal->programmeName}}</td>
                   <td class="py-3 px-6 text-center whitespace-nowrap">{{$proposal->programmeOrganizer}}</td>
-                  <td class="py-3 px-6 text-left whitespace-nowrap">{{$proposal->created_at}}</td>
+                  <td class="py-3 px-6 text-left whitespace-nowrap">{{$proposal->date}}</td>
                   <td class="py-3 px-6 text-center whitespace-nowrap">
-                    <div class="flex item-center justify-center">
+                    <div class="flex item-left">
                       <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                        <a href="/showStatus/{{$proposal->id}}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg></a>
+                        <!-- <a href="/showStatus/{{$proposal->id}}"> -->
+                        <div class="flex item-left justify-left">
+                      <!-- <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"> -->
+                      <a class="btn btn-xs btn-primary bg-green-200 text-green-600 py-0.3 px-2 rounded-full text-xs" href="/showStatus/{{$proposal->id}}">
+                                        {{ trans('View') }} 
+                                    </a>
+                      </div>
+                    <!-- </a> -->
                       </div>
                     </div>
                   </td>
@@ -137,15 +117,4 @@
     </div>
   </div>
 </div>
-
-      <script>
-      $(function() {
-        $('input[name="daterange"]').daterangepicker({
-            opens: 'left'
-        },
-        function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        });
-      });
-      </script>
 @endsection

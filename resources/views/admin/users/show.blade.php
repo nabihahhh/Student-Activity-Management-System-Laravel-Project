@@ -1,69 +1,34 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="card">
-    <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.user.title') }}
-    </div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-10">
+                    @section('header', 'APPROVAL COMMITTEE - VIEW DETAILS')<br>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('index') }}" class="btn btn-md btn-success float-right"><i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div> 
+            </div>
 
-    <div class="card-body">
-        <div class="form-group">
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.users.index') }}">
-                    {{ trans('global.back_to_list') }}
+            <div class="container px-20 py-5 w-full mx-auto pb-10 flex justify-center   " >
+<div class="p-10 shadow-md rounded-md text-left bg-gray-50 w-screen mt-4">
+    <div class="card">
+    <span class="px-6 py-1 flex items-center leading-normal bg-green-700 text-white shadow-md rounded-md border-r-0 border-grey-light px-3 whitespace-no-wrap text-grey-dark text-sm">
+                               APPROVAL COMMITTEE DETAILS
+                            </span><br>
+                            <strong>Name:</strong> {{$user->name}}<br>
+                            <strong>Email: </strong>{{$user->email}}<br>
+
+<br>
+
+<a class="btn btn-default btn btn-primary bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded " href="{{ route('admin.users.index') }}">
+                    Back to list
                 </a>
-            </div>
-            <table class="table table-bordered table-striped">
-                <tbody>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.user.fields.id') }}
-                        </th>
-                        <td>
-                            {{ $user->id }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.user.fields.name') }}
-                        </th>
-                        <td>
-                            {{ $user->name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.user.fields.email') }}
-                        </th>
-                        <td>
-                            {{ $user->email }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.user.fields.email_verified_at') }}
-                        </th>
-                        <td>
-                            {{ $user->email_verified_at }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.user.fields.roles') }}
-                        </th>
-                        <td>
-                            @foreach($user->roles as $key => $roles)
-                                <span class="label label-info">{{ $roles->title }}</span>
-                            @endforeach
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.users.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
+
+
+    
         </div>
     </div>
 </div>
