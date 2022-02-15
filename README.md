@@ -12,7 +12,7 @@
     2. Copy .env.example file to .env and edit database credentials there
     3. Run composer install
     4. Run php artisan key:generate
-    5. Run php artisan migrate --seed (it has some seeded data for your testing)
+    5. Run php artisan migrate --seed 
     6. Launch the main URL or go to /login and login with default credentials admin@gmail.com - 123456789 or /register to register users
 
 
