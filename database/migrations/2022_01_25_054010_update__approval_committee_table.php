@@ -15,7 +15,7 @@ class UpdateApprovalCommitteeTable extends Migration
     {
         //
         Schema::table('_approval_committee', function (Blueprint $table) {
-            $table->renameColumn('id', 'approvalCommittee_id');
+            // $table->renameColumn('id', 'approvalCommittee_id');
             $table->dropColumn('approvalCommitteeStaffID');
     });
     }
